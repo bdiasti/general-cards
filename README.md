@@ -1,6 +1,6 @@
 # Arcana — Crônicas do Conhecimento
 
-Coleção educativa e arena de duelos de alta fantasia. Nove cartas de Engenharia de IA com HP, ataque, poderes próprios, sete ilustrações geradas para o projeto, conceitos fundamentados e desafios.
+Coleção educativa e arena de duelos de alta fantasia. Dez cartas de Engenharia de IA com HP, ataque, poderes próprios, oito ilustrações geradas para o projeto, conceitos fundamentados e desafios.
 
 ## Executar
 
@@ -21,7 +21,6 @@ Execute `npm run build` para gerar o site estático em `dist/`. A configuração
 ```sh
 npm run check
 npm test
-npm run balance
 ```
 
 O runner de testes usa isolamento desabilitado para funcionar em ambientes Windows que não permitem subprocessos. Os testes usam somente módulos nativos de Node.js.
@@ -35,6 +34,8 @@ Na [Arena dos Saberes](https://arcana-conhecimento.contaaxie1990.chatgpt.site/#a
 O grimório e o último duelo ficam no `localStorage` deste navegador; não há conta ou sincronização. A partida salva é reconstruída a partir de ações validadas pelo motor. Os desafios educativos não persistem pontuação. Multiplayer online não está incluído nesta edição.
 
 A carta 009, **Cartógrafa dos Mil Caminhos**, apresenta HNSW com ilustração própria, explicação, fonte primária, quiz e poder de salto entre adversários. Acesso direto: `/#carta/hnsw`. Prompt da arte: [docs/hnsw-art-prompt.json](docs/hnsw-art-prompt.json).
+
+A carta 010, **O Cerco Sem Fim**, representa prompt injection e guardrails como uma disputa eterna de gato e rato. Poder Brecha e Barreira: 3 de dano ignorando escudo e 2 de escudo próprio. Atributos iniciais, sem nova simulação de equilíbrio. Acesso: `/#carta/siege`.
 
 ## Continuar o projeto
 
@@ -51,6 +52,6 @@ A carta 009, **Cartógrafa dos Mil Caminhos**, apresenta HNSW com ilustração p
 - Prompts completos e registro da ferramenta integrada de geração: [docs/art-prompts.json](docs/art-prompts.json).
 - Imagens geradas: [public/art/](public/art/).
 
-Para uma nova carta, crie um objeto seguindo as cartas existentes, use um ID estável, inclua fontes/limites/desafio, adicione a imagem e uma entrada em `combat-cards.js`, e atualize os totais de edição no HTML e no template de carta. Execute testes, simulações de equilíbrio e revise a carta em celular e desktop. Ao mudar regras incompatíveis com partidas salvas, incremente `RULES.version`.
+Para uma nova carta, crie um objeto seguindo as cartas existentes, use um ID estável, inclua fontes/limites/desafio, adicione a imagem e uma entrada em `combat-cards.js`, e atualize os totais de edição no HTML e no template de carta. Execute verificações funcionais e revise a carta em celular e desktop. Por preferência do usuário, não execute simulações nem ajuste o equilíbrio das cartas até ele pedir o grande balanceamento. Ao mudar regras incompatíveis com partidas salvas, incremente `RULES.version`.
 
 As cartas de busca por palavra e busca híbrida compartilham ilustrações de sua família nesta edição. PNGs são originais e precisam de variantes otimizadas antes de produção. Fontes Google são opcionais, com fallbacks locais. O projeto não depende de Godot ou Three.js neste marco; a justificativa está no PRD.

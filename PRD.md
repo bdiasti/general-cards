@@ -1,6 +1,10 @@
 # Arcana — Crônicas do Conhecimento
 
-**PRD v0.3 · 20 de setembro de 2026 · Status: coleção + arena jogável**
+**PRD v0.4 · 20 de setembro de 2026 · Status: coleção + arena jogável**
+
+## Adição v0.4 — O Cerco Sem Fim
+
+Carta 010: um gato sentinela e um rato infiltrador representam prompt injection e guardrails. Arte própria, conceito apoiado na OWASP, quiz e poder Brecha e Barreira. Atributos iniciais: 20 HP, 3 ataque, 2 mana; dano 3 ignorando escudo e escudo próprio 2 até a próxima rodada, sem acumular. Balanceamento geral adiado a pedido do usuário; nenhuma nova simulação nesta entrega.
 
 ## Adição v0.3 — HNSW
 
@@ -8,7 +12,7 @@ Carta 009: Cartógrafa dos Mil Caminhos. Nona carta da coleção, com sétima il
 
 ## Entrega v0.2 — Arena dos Saberes
 
-Além da coleção, o produto oferece duelos de três cartas contra três, contra o computador ou entre duas pessoas no mesmo aparelho. Todas as nove cartas possuem HP, ataque básico, função e um poder exclusivo. Todos os tipos se manifestam como combatentes neste modo; raridade e favoritos não concedem vantagens.
+Além da coleção, o produto oferece duelos de três cartas contra três, contra o computador ou entre duas pessoas no mesmo aparelho. Todas as dez cartas possuem HP, ataque básico, função e um poder exclusivo. Todos os tipos se manifestam como combatentes neste modo; raridade e favoritos não concedem vantagens.
 
 Cada equipe escolhe três cartas diferentes e recebe três pontos de mana por rodada. Os jogadores alternam uma ação por vez: ataque básico gratuito, defesa gratuita com três pontos de escudo, ou poder com custo de um ou dois pontos de mana. Cada carta viva age uma vez na rodada. Ao usar um poder, ele fica indisponível na rodada seguinte. A iniciativa inicial é sorteada e alterna nas rodadas seguintes.
 

@@ -1,8 +1,14 @@
-# Arena dos Saberes — regras e balanceamento v0.3
+# Arena dos Saberes — regras v0.4 · histórico de balanceamento v0.3
+
+## Nova carta: atributos iniciais, sem balanceamento
+
+O Cerco Sem Fim: 20 HP, ataque 3, poder Brecha e Barreira por 2 mana. Causa 3 de dano ignorando escudo e concede 2 de escudo próprio até a próxima rodada. Não acumula: preserva escudo maior existente. Fraqueza e marca seguem as regras normais.
+
+As simulações abaixo e balance-report.json são registros históricos da coleção de nove cartas v0.3 e não incluem esta carta. Não executar novas simulações nem ajustar atributos até o usuário pedir o grande balanceamento.
 
 ## Formato
 
-Três cartas distintas por lado, escolhidas entre nove cartas gratuitas. Cada carta ocupa uma vaga; raridade não altera atributos. Feitiços, artefatos e maldições também são combatentes nesta arena. Modos: computador e duas pessoas no mesmo aparelho. Não há multiplayer online, conta ou ranking.
+Três cartas distintas por lado, escolhidas entre dez cartas gratuitas. Cada carta ocupa uma vaga; raridade não altera atributos. Feitiços, artefatos e maldições também são combatentes nesta arena. Modos: computador e duas pessoas no mesmo aparelho. Não há multiplayer online, conta ou ranking.
 
 Uma ação por carta viva por rodada, alternando os jogadores. Se um lado ficar sem cartas prontas, o outro termina suas ações. Iniciativa sorteada na primeira rodada, alternada nas seguintes; revanche inverte a iniciativa inicial. Vence quem elimina o outro time. Efeitos simultâneos podem empatar.
 
@@ -12,7 +18,7 @@ Escudo, marca e fraqueza expiram no início da próxima rodada. Marca concede +2
 
 O **Salto hierárquico** da Cartógrafa dos Mil Caminhos causa 4 de dano ao inimigo escolhido e 2 a outro inimigo vivo com menor HP atual. Em empate, escolhe a posição mais à esquerda da equipe. O alvo principal nunca recebe o salto; cartas eliminadas são ignoradas. Sem outro inimigo vivo, o segundo acerto não acontece. Derrotar o alvo principal não interrompe o salto. Ambos os acertos respeitam escudos. Fraqueza reduz o dano base de cada acerto em 2 e é consumida uma vez pelo poder; a marca de cada alvo acrescenta 2 ao seu próprio acerto e é consumida mesmo quando o escudo absorve o dano. A seleção do alvo adicional usa HP, sem descontar escudos. Mana e recarga seguem a regra dos demais poderes.
 
-## Atributos finais
+## Atributos da coleção v0.3 (histórico)
 
 | Carta | HP | Ataque | Mana do poder | Poder |
 |---|---:|---:|---:|---|
@@ -26,9 +32,9 @@ O **Salto hierárquico** da Cartógrafa dos Mil Caminhos causa 4 de dano ao inim
 | Espelho das Respostas | 23 | 3 | 2 | Dano 3 e fraqueza no próximo golpe |
 | Cartógrafa dos Mil Caminhos | 18 | 3 | 2 | Dano 4 no alvo e 2 em outro inimigo vivo com menor HP |
 
-## Simulação reproduzível
+## Simulação reproduzível (histórico de nove cartas)
 
-`npm run balance` usa a semente 20260920 e executa todos os pares diferentes entre as 84 equipes possíveis, duas vezes por par, invertendo a iniciativa. São 6.972 partidas. Ambos os lados usam o mesmo bot tático, que avalia HP, sobrevivência, ataque e efeitos, com desempates pseudoaleatórios. Empate vale meio ponto. O relatório é gerado em `docs/balance-report.json`. `node scripts/balance.mjs --quick` usa aproximadamente um quinto dos pares para uma verificação inicial, sem substituir o relatório completo.
+Na versão v0.3, `npm run balance` usa a semente 20260920 e executa todos os pares diferentes entre as 84 equipes possíveis, duas vezes por par, invertendo a iniciativa. São 6.972 partidas. Ambos os lados usam o mesmo bot tático, que avalia HP, sobrevivência, ataque e efeitos, com desempates pseudoaleatórios. Empate vale meio ponto. O relatório é gerado em `docs/balance-report.json`. `node scripts/balance.mjs --quick` usa aproximadamente um quinto dos pares para uma verificação inicial, sem substituir o relatório completo.
 
 - Iniciativa inicial: **52,23% dos pontos**.
 - Média: **8,08 rodadas**; máximo observado: **15**.

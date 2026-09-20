@@ -4,6 +4,28 @@ import { createBattle, act, legalActions, chooseAction, restoreMatch } from '../
 import { combatCards, RULES } from '../src/combat-cards.js';
 
 const teams = [['rag', 'keyword', 'semantic'], ['lexical', 'poison', 'contamination']];
+
+test('Brecha e Barreira ignora escudo, preserva defesa maior e mantém efeitos e replay', () => {
+  const lineup = [['siege', 'rag', 'keyword'], teams[1]];
+  const state = createBattle(lineup);
+  state.teams[1][0].shield = 3;
+  const next = act(state, { actor: 0, kind: 'power', target: 0 });
+  assert.equal(next.teams[1][0].hp, combatCards.lexical.hp - 3);
+  assert.equal(next.teams[1][0].shield, 3);
+  assert.equal(next.teams[0][0].shield, 2);
+  assert.equal(next.mana[0], 1);
+  assert.equal(next.teams[0][0].cooldown, RULES.cooldown);
+  state.teams[0][0].shield = 3;
+  state.teams[0][0].weak = true;
+  state.teams[1][0].marked = true;
+  const affected = act(state, { actor: 0, kind: 'power', target: 0 });
+  assert.equal(affected.teams[0][0].shield, 3);
+  assert.equal(affected.teams[1][0].hp, combatCards.lexical.hp - 3);
+  assert.equal(affected.teams[0][0].weak, false);
+  assert.equal(affected.teams[1][0].marked, false);
+  const action = { actor: 0, kind: 'power', target: 0 };
+  assert.deepEqual(restoreMatch({ version: RULES.version, mode: 'local', teams: lineup, first: 0, actions: [action] }).state, act(createBattle(lineup), action));
+});
 test('equipes rejeitam cartas desconhecidas, repetidas e tamanhos inválidos', () => {
   for (const invalid of [[], ['rag'], ['rag', 'rag', 'poison'], ['rag', 'keyword', '__proto__']]) assert.throws(() => createBattle([invalid, teams[1]]));
   assert.throws(() => createBattle(teams, 2));

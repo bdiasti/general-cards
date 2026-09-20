@@ -1,6 +1,7 @@
 import { combatCards } from './combat-cards.js';
 
 export const sources = {
+  siege: { title: 'OWASP — LLM01:2025 Prompt Injection', url: 'https://genai.owasp.org/llmrisk/llm01-prompt-injection/' },
   hnsw: { title: 'Malkov e Yashunin — Hierarchical Navigable Small World graphs (2016; revisão 2018)', url: 'https://arxiv.org/abs/1603.09320' },
   rag: { title: 'Lewis et al. — Retrieval-Augmented Generation (2020)', url: 'https://arxiv.org/abs/2005.11401' },
   search: { title: 'Elastic — Search approaches', url: 'https://www.elastic.co/docs/solutions/search/search-approaches' },
@@ -109,6 +110,17 @@ export const cards = [
     limit: 'HNSW não gera embeddings nem respostas e não garante encontrar sempre os vizinhos exatos. Qualidade do índice, distância escolhida e parâmetros afetam memória, velocidade e recall. Os saltos de dano da arena são uma metáfora de navegação; não simulam o algoritmo.',
     related: ['semantic', 'rag', 'hybrid'], source: 'hnsw',
     quiz: { question: 'Como HNSW acelera a busca de vetores semelhantes?', options: ['Percorre um grafo em camadas, refinando uma busca aproximada', 'Compara obrigatoriamente todos os vetores a cada consulta', 'Gera uma resposta pronta sem recuperar vizinhos'], answer: 0, feedback: 'As camadas ajudam a chegar a uma região promissora e refinar a busca. A aproximação economiza comparações, mas não garante os vizinhos exatos em toda consulta.' },
+  },
+  {
+    id: 'siege', number: 10, name: 'O Cerco Sem Fim', concept: 'Prompt injection × Guardrails', subtitle: 'Ataque, defesa e adaptação · O eterno jogo de gato e rato', type: 'Feitiço', rarity: 'Lendária', art: 'siege', color: 'gold', race: 'Engenharia de IA', lineage: 'Felinos e Roedores · Círculo da Vigília',
+    ability: 'Brecha e Barreira', summary: 'O rato inventa uma brecha. O gato redesenha a barreira. A vigília recomeça.',
+    flavor: '“A porta de ontem já não basta. O truque de ontem também não.”',
+    lore: 'Na biblioteca circular, o Rato das Entrelinhas esconde ordens em pergaminhos que parecem inocentes. O Gato da Vigília separa mensagens de mandamentos e restaura os selos da fortaleza. Cada passagem descoberta inspira outra proteção; cada proteção exige um novo ardil. Nenhum deles recebe a última palavra: a escada volta ao início, mas ambos retornam mais atentos.',
+    explanation: 'Prompt injection tenta fazer a IA tratar conteúdo não confiável como instruções. Pode chegar diretamente em uma mensagem ou indiretamente por um documento recuperado. Guardrails são controles para limitar comportamentos; defesa em camadas combina separação de conteúdo, validação e permissões mínimas.',
+    example: 'Um assistente encontra, num documento, uma ordem para desviar da tarefa. O sistema deve tratar essa ordem como dado, limitar o acesso às ferramentas e exigir aprovação para ações sensíveis.',
+    limit: 'Nenhum filtro garante proteção total. Restrições excessivas também podem bloquear tarefas legítimas; as defesas precisam ser avaliadas e atualizadas. O poder da carta é uma metáfora: prompt injection não atravessa toda defesa automaticamente. O rato representa um invasor nesta história, não toda pessoa que pesquisa segurança.',
+    related: ['rag', 'agent', 'poison'], source: 'siege',
+    quiz: { question: 'Qual defesa combina melhor com essa vigília contínua?', options: ['Confiar apenas em uma frase secreta no prompt', 'Separar conteúdo de instruções, limitar permissões e revisar as defesas', 'Bloquear toda entrada e impedir qualquer tarefa'], answer: 1, feedback: 'Defesa em camadas reduz o risco e o impacto de falhas, preservando tarefas legítimas. Uma única instrução ou filtro não garante segurança.' },
   },
 ].map(card => ({ ...card, combat: combatCards[card.id], cost: combatCards[card.id].cost,
   mechanic: `${combatCards[card.id].power}: ${combatCards[card.id].text} Custo: ${combatCards[card.id].cost} de mana. Recarga: 1 rodada completa.` }));

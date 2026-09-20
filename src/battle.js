@@ -80,7 +80,7 @@ export function act(state, action) {
       const weakness = u.weak ? 2 : 0;
       const amount = Math.max(0, base - weakness) + (target.marked ? 2 : 0);
       u.weak = false; target.marked = false;
-      const dealt = damage(target, amount, action.kind === 'power' && c.effect === 'pierce');
+      const dealt = damage(target, amount, action.kind === 'power' && ['pierce', 'siege'].includes(c.effect));
       s.log.push(`${u.id} ${action.kind === 'attack' ? 'atacou' : `usou ${c.power} contra`} ${target.id}: ${dealt} de dano${target.hp === 0 ? ' · carta derrotada' : ''}.`);
       if (action.kind === 'power') {
         if (c.effect === 'hop') {
@@ -93,7 +93,7 @@ export function act(state, action) {
             s.log.push(`${u.id} saltou para ${other.id}: ${hopDealt} de dano${other.hp === 0 ? ' · carta derrotada' : ''}.`);
           }
         }
-        if (c.effect === 'bulwark') u.shield = Math.max(u.shield, 2);
+        if (['bulwark', 'siege'].includes(c.effect)) u.shield = Math.max(u.shield, 2);
         if (c.effect === 'poison' && target.hp > 0) target.poison = 2;
         if (c.effect === 'mark' && target.hp > 0) target.marked = true;
         if (c.effect === 'weaken' && target.hp > 0) target.weak = true;

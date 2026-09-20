@@ -160,6 +160,6 @@ function readHash() { const id = location.hash.match(/^#carta\/([a-z]+)$/)?.[1];
 window.addEventListener('popstate', readHash);
 window.addEventListener('hashchange', readHash);
 window.addEventListener('storage', e => { if (e.key === storageKey || e.key === null) { try { saved = sanitizeSaved(JSON.parse(localStorage.getItem(storageKey) || '[]')); } catch { saved = []; } state.saved = saved; renderGrid(); if (currentCard) updateDetailSave(currentCard); } });
-document.querySelector('#hero-cards').innerHTML = [cards[1], cards[0], cards.find(c => c.id === 'hnsw')].map(c => cardMarkup(c, true)).join('');
+document.querySelector('#hero-cards').innerHTML = [cards.find(c => c.id === 'hnsw'), cards[0], cards.find(c => c.id === 'siege')].map(c => cardMarkup(c, true)).join('');
 document.querySelectorAll('[data-card-count]').forEach(el => { el.textContent = String(cards.length).padStart(Number(el.dataset.cardCount) || 1, '0'); });
 hydrateIcons(); renderGrid(); readHash();
