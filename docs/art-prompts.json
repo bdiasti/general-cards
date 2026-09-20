@@ -1,0 +1,31 @@
+{
+  "method": "Ferramenta integrada image_gen",
+  "created": "2026-09-20",
+  "notes": "Seis ilustrações originais. Busca por palavra compartilha lexical; busca híbrida compartilha semantic nesta edição alfa.",
+  "prompts": [
+    {
+      "id": "rag",
+      "prompt": "Create a premium collectible fantasy trading card ARTWORK, no typography, no borders, no letters. Portrait 2:3 composition. Painterly detailed oil and gouache illustration, sophisticated classic high fantasy book cover, tactile brushwork, dramatic chiaroscuro, muted forest emerald and antique gold accents, atmospheric depth. Entire canvas is artwork for a website card. Original characters in a world inspired by epic elven, dwarven and wizard fantasy. A wise elven archivist with long silver hair and layered teal robes in an immense ancient cathedral library, holding an open luminous golden book, fragments of illuminated manuscripts float around him, carved arches, warm amber light amid shadow. Central figure at upper middle, compelling face, cinematic. "
+    },
+    {
+      "id": "lexical",
+      "prompt": "Create a premium collectible fantasy trading card ARTWORK, no typography, no borders, no letters. Portrait 2:3 composition. Painterly detailed oil and gouache illustration, sophisticated classic high fantasy book cover, tactile brushwork, dramatic chiaroscuro, muted forest emerald and antique gold accents, atmospheric depth. Entire canvas is artwork for a website card. Original characters in a world inspired by epic elven, dwarven and wizard fantasy. A dwarven rune keeper with braided dark beard studying an ancient stone tablet with a magnifying crystal in a mossy subterranean archive, tiny gold abstract rune-like marks but no readable text, emerald cloak, warm candlelight, mystical dust. "
+    },
+    {
+      "id": "semantic",
+      "prompt": "Create a premium collectible fantasy trading card ARTWORK, no typography, no borders, no letters. Portrait 2:3 composition. Painterly detailed oil and gouache illustration, sophisticated classic high fantasy book cover, tactile brushwork, dramatic chiaroscuro, muted forest emerald and antique gold accents, atmospheric depth. Entire canvas is artwork for a website card. Original characters in a world inspired by epic elven, dwarven and wizard fantasy. An elven woman oracle with silver hair beneath a midnight teal hood, weaving fine golden filaments between luminous stars above her cupped hands, forest canopy cathedral and distant cosmic sky, graceful and mysterious, luminous cyan and antique gold. "
+    },
+    {
+      "id": "agent",
+      "prompt": "Create a premium collectible fantasy trading card ARTWORK, no typography, no borders, no letters. Portrait 2:3 composition. Painterly detailed oil and gouache illustration, sophisticated classic high fantasy book cover, tactile brushwork, dramatic chiaroscuro, muted forest emerald and antique gold accents, atmospheric depth. Entire canvas is artwork for a website card. Original characters in a world inspired by epic elven, dwarven and wizard fantasy. A ranger strategist in dark green cloak standing over an illuminated parchment map on a stone table in a ruined tower, three small magical golden orbs circling a compass in front of him, dawn mist, thoughtful determined face, rich earthy palette. "
+    },
+    {
+      "id": "poison",
+      "prompt": "Create a premium collectible fantasy trading card ARTWORK, no typography, no borders, no letters. Portrait 2:3 composition. Painterly detailed oil and gouache illustration, sophisticated classic high fantasy book cover, tactile brushwork, dramatic chiaroscuro, muted forest emerald and antique gold accents, atmospheric depth. Entire canvas is artwork for a website card. Original characters in a world inspired by epic elven, dwarven and wizard fantasy. A sinister white robed wizard entranced by a black crystal seeing stone filled with a burning red eye-like light, thin poisonous violet and crimson smoke flows from the stone into scrolls on his desk, gothic tower, eerie dramatic light, elegant composition. "
+    },
+    {
+      "id": "contamination",
+      "prompt": "Create a premium collectible fantasy trading card ARTWORK, no typography, no borders, no letters. Portrait 2:3 composition. Painterly detailed oil and gouache illustration, sophisticated classic high fantasy book cover, tactile brushwork, dramatic chiaroscuro, muted forest emerald and antique gold accents, atmospheric depth. Entire canvas is artwork for a website card. Original characters in a world inspired by epic elven, dwarven and wizard fantasy. A medieval scholar at an examination desk discovering a golden answer scroll secretly reflected inside a magical mirror, two identical illuminated parchments side by side, pale gold and icy blue highlights, ancient vaulted chamber, allegory of leaked answers, sophisticated atmosphere. "
+    }
+  ]
+}
