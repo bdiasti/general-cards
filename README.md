@@ -1,6 +1,6 @@
 # Arcana — Crônicas do Conhecimento
 
-Protótipo de uma coleção de cartas educativas de alta fantasia. Oito cartas de Engenharia de IA com seis ilustrações originais, conceitos fundamentados, limites das analogias e desafios.
+Coleção educativa e arena de duelos de alta fantasia. Oito cartas de Engenharia de IA com HP, ataque, poderes próprios, seis ilustrações originais, conceitos fundamentados e desafios.
 
 ## Executar
 
@@ -12,8 +12,6 @@ npm run dev
 
 Abra http://localhost:4173. Use `PORT` para selecionar outra porta. O servidor escuta apenas em loopback e é destinado a desenvolvimento local. Para hospedar estaticamente, publique `index.html`, `src/`, `public/` e `PRD.md` na raiz do site.
 
-## Verificar
-
 ## Hospedagem
 
 Execute `npm run build` para gerar o site estático em `dist/`. A configuração de hospedagem está em `.openai/hosting.json`.
@@ -23,6 +21,7 @@ Execute `npm run build` para gerar o site estático em `dist/`. A configuração
 ```sh
 npm run check
 npm test
+npm run balance
 ```
 
 O runner de testes usa isolamento desabilitado para funcionar em ambientes Windows que não permitem subprocessos. Os testes usam somente módulos nativos de Node.js.
@@ -31,7 +30,9 @@ O runner de testes usa isolamento desabilitado para funcionar em ambientes Windo
 
 Galeria responsiva, busca sem acentos, filtros por tipo, quatro ordenações, detalhes com fontes, desafios com feedback, cartas relacionadas, links diretos e favoritos locais. Experimente `/#carta/rag`. `/` foca a busca. Escape fecha o painel. As setas navegam as abas.
 
-O grimório fica no `localStorage` deste navegador; não há conta ou sincronização. Os desafios não persistem pontuação. Mana e habilidades são propostas para o futuro jogo. Duelos ainda não foram implementados.
+Na [Arena dos Saberes](https://arcana-conhecimento.contaaxie1990.chatgpt.site/#arena), escolha 3 cartas e jogue contra o computador ou outro jogador no mesmo aparelho. Ataque, defenda e combine poderes com 3 de mana por rodada. Há cura, escudos, veneno, marca e fraqueza, iniciativa alternada, tempestade contra partidas infinitas e revanche. Todas as cartas são livres para jogar; raridade não concede bônus.
+
+O grimório e o último duelo ficam no `localStorage` deste navegador; não há conta ou sincronização. A partida salva é reconstruída a partir de ações validadas pelo motor. Os desafios educativos não persistem pontuação. Multiplayer online não está incluído nesta edição.
 
 ## Continuar o projeto
 
@@ -39,10 +40,15 @@ O grimório fica no `localStorage` deste navegador; não há conta ou sincroniza
 - Cartas e fontes: [src/cards.js](src/cards.js).
 - Comportamento da interface: [src/app.js](src/app.js).
 - Estilo: [src/style.css](src/style.css).
+- Motor de combate e validações: [src/battle.js](src/battle.js).
+- Atributos e poderes: [src/combat-cards.js](src/combat-cards.js).
+- Arena: [src/arena.js](src/arena.js) e [src/arena.css](src/arena.css).
+- Regras, metodologia e limitações do equilíbrio: [docs/BATALHA.md](docs/BATALHA.md).
+- Resultados reproduzíveis: [docs/balance-report.json](docs/balance-report.json), gerados por `npm run balance`.
 - Decisões visuais específicas: [design-system/arcana/pages/collection.md](design-system/arcana/pages/collection.md).
 - Prompts completos e registro da ferramenta integrada de geração: [docs/art-prompts.json](docs/art-prompts.json).
 - Imagens geradas: [public/art/](public/art/).
 
-Para uma nova carta, crie um objeto seguindo as oito existentes, use um ID estável, inclua fontes/limites/desafio, adicione a imagem e atualize os totais de edição no HTML e no template de carta. Execute os testes e revise a carta em celular e desktop.
+Para uma nova carta, crie um objeto seguindo as oito existentes, use um ID estável, inclua fontes/limites/desafio, adicione a imagem e uma entrada em `combat-cards.js`, e atualize os totais de edição no HTML e no template de carta. Execute testes, simulações de equilíbrio e revise a carta em celular e desktop. Ao mudar regras incompatíveis com partidas salvas, incremente `RULES.version`.
 
 As cartas de busca por palavra e busca híbrida compartilham ilustrações de sua família nesta edição. PNGs são originais e precisam de variantes otimizadas antes de produção. Fontes Google são opcionais, com fallbacks locais. O projeto não depende de Godot ou Three.js neste marco; a justificativa está no PRD.

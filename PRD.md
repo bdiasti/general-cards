@@ -1,6 +1,20 @@
 # Arcana — Crônicas do Conhecimento
 
-**PRD v0.1 · 20 de setembro de 2026 · Status: definição inicial + protótipo navegável**
+**PRD v0.2 · 20 de setembro de 2026 · Status: coleção + arena jogável**
+
+## Entrega v0.2 — Arena dos Saberes
+
+Além da coleção, o produto oferece duelos de três cartas contra três, contra o computador ou entre duas pessoas no mesmo aparelho. Todas as oito cartas possuem HP, ataque básico, função e um poder exclusivo. Todos os tipos se manifestam como combatentes neste modo; raridade e favoritos não concedem vantagens.
+
+Cada equipe escolhe três cartas diferentes e recebe três pontos de mana por rodada. Os jogadores alternam uma ação por vez: ataque básico gratuito, defesa gratuita com três pontos de escudo, ou poder com custo de um ou dois pontos de mana. Cada carta viva age uma vez na rodada. Ao usar um poder, ele fica indisponível na rodada seguinte. A iniciativa inicial é sorteada e alterna nas rodadas seguintes.
+
+Poderes incluem cura limitada ao HP máximo, dano que ignora escudos, escudo próprio, marca de dano adicional, golpe de baixo custo, ataque com cura, veneno por duas rodadas e redução temporária de dano. Escudos, marcas e fraqueza expiram ao iniciar outra rodada; veneno não acumula. Cartas derrotadas não podem agir nem ser curadas. Vence quem derrota a equipe rival; eliminações simultâneas empatam.
+
+A partir da rodada nove, uma tempestade causa dano crescente em todas as cartas vivas, ignorando escudos. O último duelo fica salvo no navegador por replay validado. Há retomada, registro de ações, explicação das regras e revanche com iniciativa invertida. Online, contas, ranking e progressão competitiva continuam fora desta entrega.
+
+Equilíbrio é avaliado por simulações pareadas entre todas as 56 formações possíveis, com os dois lados usando o mesmo bot e alternando quem começa. Essa avaliação detecta disparidades e não substitui partidas humanas, outras estratégias ou medição de diversão.
+
+**Histórico:** as seções 1–12 abaixo registram o planejamento e a entrega da v0.1. Menções a duelos futuros e mana experimental nessas seções foram superadas pelas regras acima.
 
 Nome de trabalho, terminologia de raças e proposta de combate permanecem abertos à evolução com o criador. Este documento distingue requisitos solicitados, decisões do protótipo e hipóteses para validação.
 

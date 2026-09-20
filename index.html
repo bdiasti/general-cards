@@ -8,7 +8,9 @@
   <title>Arcana — Crônicas do Conhecimento</title>
   <link rel="icon" href="/public/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/src/style.css">
+  <link rel="stylesheet" href="/src/arena.css">
   <script type="module" src="/src/app.js"></script>
+  <script type="module" src="/src/arena.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#colecao">Pular para a coleção</a>
@@ -16,7 +18,7 @@
     <a class="brand" href="#inicio" aria-label="Arcana, início"><span class="brand-sigil" aria-hidden="true">✧</span><span>ARCANA<small>CRÔNICAS DO CONHECIMENTO</small></span></a>
     <nav aria-label="Navegação principal">
       <a class="nav-link active" href="#colecao" data-view="all">Explorar cartas</a>
-      <button class="nav-link" data-action="realms">Os reinos</button>
+      <a class="nav-link" href="#arena">Jogar na arena</a>
       <button class="nav-link" data-action="guide">Como funciona</button>
     </nav>
     <button class="grimoire-btn" data-action="grimoire"><span data-icon="book"></span><span>Meu grimório</span><span id="saved-count" class="count">0</span></button>
@@ -27,7 +29,7 @@
         <div class="eyebrow"><span class="small-line"></span> UM NOVO UNIVERSO PARA APRENDER</div>
         <h1 id="hero-title">Todo conhecimento<br>carrega uma <em>magia.</em></h1>
         <p>Reúna saberes. Desvende conceitos. Construa seu grimório.<br class="desktop-break"> Um universo de cartas onde a fantasia revela o mundo real.</p>
-        <div class="hero-actions"><a class="primary-btn" href="#colecao">Explorar a coleção <span data-icon="arrow"></span></a><button class="text-btn" data-action="guide"><span data-icon="compass"></span> Inicie sua jornada</button></div>
+        <div class="hero-actions"><a class="primary-btn" href="#colecao">Explorar a coleção <span data-icon="arrow"></span></a><a class="text-btn" href="#arena"><span data-icon="shield"></span> Jogar na arena</a></div>
         <div class="hero-note"><span class="tiny-diamond"></span> PRIMEIRA EDIÇÃO <span class="dot">·</span> OS ARQUITETOS DO INVISÍVEL</div>
       </div>
       <div class="hero-art" aria-label="Destaques da coleção de Engenharia de IA">
@@ -37,10 +39,25 @@
       </div>
     </section>
     <div class="edition-bar"><div class="wrap edition-inner"><span><span data-icon="spark"></span> Fantasia na forma. Conhecimento na essência.</span><div><span><b>08</b> cartas para descobrir</span><span class="edition-divider"></span><span><b>01</b> reino para explorar</span><span class="edition-tag">EDIÇÃO ALFA</span></div></div></div>
+    <section class="arena-section wrap" id="arena" aria-labelledby="arena-title">
+      <div class="section-heading"><div><div class="eyebrow">SUAS CARTAS TÊM UMA NOVA HISTÓRIA</div><h2 id="arena-title">A arena dos saberes</h2></div><span class="chapter-label">COLECIONE. COMBINE. DUELE.</span></div>
+      <div id="arena-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+      <div id="arena-content"></div>
+      <details class="arena-rules"><summary>Como jogar · regras e equilíbrio</summary><div class="rules-grid">
+        <p><b>01 · Monte sua equipe.</b> Escolha 3 cartas diferentes. Todas estão disponíveis e ocupam uma vaga, independentemente de raridade. Nesta arena, todos os tipos de carta se manifestam como combatentes.</p>
+        <p><b>02 · Uma ação de cada vez.</b> A iniciativa inicial é sorteada e alterna a cada rodada. Selecione uma carta pronta, escolha atacar ou usar poder e clique no alvo destacado. Defender acontece imediatamente.</p>
+        <p><b>03 · Administre a mana.</b> Cada equipe recebe 3 de mana por rodada, sem acumular. Ataque e defesa são grátis. Usar um poder consome a ação da carta e impede esse poder na próxima rodada.</p>
+        <p><b>04 · Proteja sua companhia.</b> Defender absorve até 3 de dano nesta rodada. Escudos não acumulam. Cura só funciona em cartas vivas, até seu HP máximo. Veneno dura 2 rodadas e ignora escudos.</p>
+        <p><b>05 · Conquiste a vitória.</b> Cada carta viva age uma vez por rodada. Se o rival já agiu com todas, você conclui suas ações restantes. Derrote as 3 cartas adversárias para vencer. Quedas simultâneas podem empatar.</p>
+        <p><b>06 · Sem partidas infinitas.</b> A partir da rodada 9, a tempestade causa 1 de dano em todos, aumentando em 1 por rodada. Marcas e fraqueza expiram ao trocar de rodada; veneno não acumula.</p>
+        <p><b>Equilíbrio em evolução.</b> HP, ataque e efeitos têm compensações; cartas lendárias não recebem bônus de raridade. Testamos equipes e iniciativa por simulação, mas partidas humanas continuarão orientando os ajustes.</p>
+        <p><b>Jogue do seu jeito.</b> Enfrente o computador ou um amigo no mesmo aparelho, com todas as cartas visíveis. O último duelo fica salvo neste navegador quando o armazenamento está disponível. O modo online ainda não faz parte desta edição.</p>
+      </div></details>
+    </section>
     <section class="collection wrap" id="colecao" aria-labelledby="collection-title">
       <div class="section-heading"><div><div class="eyebrow">SEU PRÓXIMO CONHECIMENTO COMEÇA AQUI</div><h2 id="collection-title">Explore o grimório</h2></div><span class="chapter-label">CAPÍTULO I <span> / </span> O DESPERTAR</span></div>
       <div class="realm-row"><button class="realm-tab selected" data-action="all"><span data-icon="layers"></span> Todos os reinos <span>8</span></button><button class="realm-tab" data-action="ai"><span data-icon="spark"></span> Engenharia de IA <span>8</span></button><button class="realm-tab future-realm" data-action="realms"><span data-icon="mountain"></span> Novos reinos <span>Em breve</span></button></div>
-      <div class="filter-row"><label class="search-box"><span data-icon="search"></span><span class="sr-only">Buscar cartas</span><input id="search" type="search" placeholder="Busque uma carta, conceito ou habilidade…" autocomplete="off"><kbd>/</kbd></label><label class="sort-box"><span class="sr-only">Ordenar cartas</span><select id="sort"><option value="number">Ordem da coleção</option><option value="name">Nome: A a Z</option><option value="cost">Menor custo de mana</option><option value="rarity">Maior raridade</option></select></label></div>
+      <div class="filter-row"><label class="search-box"><span data-icon="search"></span><span class="sr-only">Buscar cartas</span><input id="search" type="search" placeholder="Busque uma carta, conceito ou habilidade…" autocomplete="off"><kbd>/</kbd></label><label class="sort-box"><span class="sr-only">Ordenar cartas</span><select id="sort"><option value="number">Ordem da coleção</option><option value="name">Nome: A a Z</option><option value="cost">Menor custo de poder</option><option value="rarity">Maior raridade</option></select></label></div>
       <div class="category-row"><div class="type-filters" role="group" aria-label="Filtrar por tipo de carta"><button class="filter active" data-type="Todos" aria-pressed="true">Todas</button><button class="filter" data-type="Invocação" aria-pressed="false">Invocações</button><button class="filter" data-type="Feitiço" aria-pressed="false">Feitiços</button><button class="filter" data-type="Artefato" aria-pressed="false">Artefatos</button><button class="filter" data-type="Maldição" aria-pressed="false">Maldições</button></div><span id="result-count" role="status">8 cartas encontradas</span></div>
       <div id="card-grid" class="card-grid"></div>
       <div id="empty" class="empty-state" hidden><span data-icon="book"></span><h3>Nenhum pergaminho por aqui.</h3><p id="empty-message"></p><button class="primary-btn" data-action="reset">Explorar todas as cartas <span data-icon="arrow"></span></button></div>
@@ -48,7 +65,7 @@
     </section>
     <section class="manifesto wrap"><span class="manifesto-symbol">✧</span><div><div class="eyebrow">MAIS QUE UMA COLEÇÃO</div><h2>Aprender também pode ser uma aventura.</h2><p>Cada carta é uma porta para um conceito. A história desperta a curiosidade.<br>A explicação conecta a magia ao que você pode fazer no mundo real.</p></div><button class="text-btn" data-action="guide">Conheça o universo <span data-icon="arrow"></span></button></section>
   </main>
-  <footer class="wrap"><a class="footer-brand" href="#inicio">✧ ARCANA</a><span>Feito de histórias. Fundamentado em conhecimento.</span><a href="/PRD.md" target="_blank" rel="noopener">Leia o PRD <span aria-hidden="true">↗</span></a><span class="alpha-label">Protótipo 0.1 · 2026</span></footer>
+  <footer class="wrap"><a class="footer-brand" href="#inicio">✧ ARCANA</a><span>Feito de histórias. Fundamentado em conhecimento.</span><a href="/PRD.md" target="_blank" rel="noopener">Leia o PRD <span aria-hidden="true">↗</span></a><span class="alpha-label">Arena alfa 0.2 · 2026</span></footer>
   <dialog id="detail-dialog" aria-labelledby="dialog-title"><button class="close-btn" aria-label="Fechar detalhes" data-action="close"><span data-icon="close"></span></button><div id="dialog-content"></div></dialog>
   <div id="toast" class="toast" role="status"></div>
 </body>

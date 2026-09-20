@@ -1,6 +1,6 @@
 {
   "name": "arcana-conhecimento",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "Um grimório de cartas de fantasia sobre conhecimento real.",
@@ -9,7 +9,8 @@
     "dev": "node server.mjs",
     "start": "node server.mjs",
     "test": "node --test --experimental-test-isolation=none",
-    "check": "node --check src/app.js && node --check src/cards.js && node --check server.mjs"
+    "check": "node --check src/app.js && node --check src/cards.js && node --check src/battle.js && node --check src/combat-cards.js && node --check src/arena.js && node --check server.mjs",
+    "balance": "node scripts/balance.mjs"
   },
   "engines": { "node": ">=22" }
 }

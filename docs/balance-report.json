@@ -1,0 +1,100 @@
+{
+  "seed": 20260920,
+  "method": "Todas as equipes de 3 cartas; confrontos pareados com iniciativa invertida; mesmo bot tático para os dois lados. Empate vale meio ponto. Sem jogadores humanos.",
+  "quick": false,
+  "games": 3080,
+  "teams": 56,
+  "draws": 65,
+  "firstPlayerScore": 51.12,
+  "averageRounds": 8.31,
+  "longest": 14,
+  "cards": [
+    {
+      "id": "rag",
+      "games": 2310,
+      "scorePercent": 51.36
+    },
+    {
+      "id": "lexical",
+      "games": 2310,
+      "scorePercent": 49.13
+    },
+    {
+      "id": "semantic",
+      "games": 2310,
+      "scorePercent": 52.27
+    },
+    {
+      "id": "agent",
+      "games": 2310,
+      "scorePercent": 50.04
+    },
+    {
+      "id": "keyword",
+      "games": 2310,
+      "scorePercent": 48.83
+    },
+    {
+      "id": "hybrid",
+      "games": 2310,
+      "scorePercent": 47.92
+    },
+    {
+      "id": "poison",
+      "games": 2310,
+      "scorePercent": 50.91
+    },
+    {
+      "id": "contamination",
+      "games": 2310,
+      "scorePercent": 49.52
+    }
+  ],
+  "strongestTeams": [
+    {
+      "team": [
+        "lexical",
+        "agent",
+        "poison"
+      ],
+      "games": 110,
+      "scorePercent": 69.55
+    },
+    {
+      "team": [
+        "keyword",
+        "hybrid",
+        "contamination"
+      ],
+      "games": 110,
+      "scorePercent": 66.82
+    },
+    {
+      "team": [
+        "rag",
+        "lexical",
+        "poison"
+      ],
+      "games": 110,
+      "scorePercent": 65
+    },
+    {
+      "team": [
+        "rag",
+        "keyword",
+        "poison"
+      ],
+      "games": 110,
+      "scorePercent": 63.64
+    },
+    {
+      "team": [
+        "lexical",
+        "semantic",
+        "poison"
+      ],
+      "games": 110,
+      "scorePercent": 63.64
+    }
+  ]
+}
