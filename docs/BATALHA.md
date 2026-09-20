@@ -1,14 +1,16 @@
-# Arena dos Saberes — regras v0.4 · histórico de balanceamento v0.3
+# Arena dos Saberes — regras v0.5 · histórico de balanceamento v0.3
 
-## Nova carta: atributos iniciais, sem balanceamento
+## Cartas novas: atributos iniciais, sem balanceamento
+
+Soma, a Primeira Ferramenta: 16 HP, ataque 2, Juntar forças por 1 mana. Acrescenta até 5 HP a um aliado vivo ferido, incluindo si mesma, respeitando o máximo. Não ressuscita. Usa o efeito de cura já existente; pode compor uma equipe com cartas de Engenharia de IA.
 
 O Cerco Sem Fim: 20 HP, ataque 3, poder Brecha e Barreira por 2 mana. Causa 3 de dano ignorando escudo e concede 2 de escudo próprio até a próxima rodada. Não acumula: preserva escudo maior existente. Fraqueza e marca seguem as regras normais.
 
-As simulações abaixo e balance-report.json são registros históricos da coleção de nove cartas v0.3 e não incluem esta carta. Não executar novas simulações nem ajustar atributos até o usuário pedir o grande balanceamento.
+As simulações abaixo e balance-report.json são registros históricos da coleção de nove cartas v0.3 e não incluem O Cerco Sem Fim nem Soma. Não executar novas simulações nem ajustar atributos até o usuário pedir o grande balanceamento.
 
 ## Formato
 
-Três cartas distintas por lado, escolhidas entre dez cartas gratuitas. Cada carta ocupa uma vaga; raridade não altera atributos. Feitiços, artefatos e maldições também são combatentes nesta arena. Modos: computador e duas pessoas no mesmo aparelho. Não há multiplayer online, conta ou ranking.
+Três cartas distintas por lado, escolhidas entre onze cartas gratuitas. Cada carta ocupa uma vaga; raridade não altera atributos. Feitiços, artefatos e maldições também são combatentes nesta arena. Modos: computador e duas pessoas no mesmo aparelho. Não há multiplayer online, conta ou ranking.
 
 Uma ação por carta viva por rodada, alternando os jogadores. Se um lado ficar sem cartas prontas, o outro termina suas ações. Iniciativa sorteada na primeira rodada, alternada nas seguintes; revanche inverte a iniciativa inicial. Vence quem elimina o outro time. Efeitos simultâneos podem empatar.
 

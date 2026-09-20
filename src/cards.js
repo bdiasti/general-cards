@@ -1,6 +1,7 @@
 import { combatCards } from './combat-cards.js';
 
 export const sources = {
+  soma: { title: 'OpenStax — Prealgebra 2e: Add Whole Numbers', url: 'https://openstax.org/books/prealgebra-2e/pages/1-2-add-whole-numbers' },
   siege: { title: 'OWASP — LLM01:2025 Prompt Injection', url: 'https://genai.owasp.org/llmrisk/llm01-prompt-injection/' },
   hnsw: { title: 'Malkov e Yashunin — Hierarchical Navigable Small World graphs (2016; revisão 2018)', url: 'https://arxiv.org/abs/1603.09320' },
   rag: { title: 'Lewis et al. — Retrieval-Augmented Generation (2020)', url: 'https://arxiv.org/abs/2005.11401' },
@@ -122,14 +123,25 @@ export const cards = [
     related: ['rag', 'agent', 'poison'], source: 'siege',
     quiz: { question: 'Qual defesa combina melhor com essa vigília contínua?', options: ['Confiar apenas em uma frase secreta no prompt', 'Separar conteúdo de instruções, limitar permissões e revisar as defesas', 'Bloquear toda entrada e impedir qualquer tarefa'], answer: 1, feedback: 'Defesa em camadas reduz o risco e o impacto de falhas, preservando tarefas legítimas. Uma única instrução ou filtro não garante segurança.' },
   },
+  {
+    id: 'soma', number: 11, name: 'Soma, a Primeira Ferramenta', concept: 'Soma', subtitle: 'Adição de números naturais · A primeira ferramenta para juntar quantidades', type: 'Artefato', rarity: 'Comum', art: 'soma', color: 'gold', race: 'Matemática', theme: 'Caixa de Ferramentas', lineage: 'Matemática · Caixa de Ferramentas',
+    ability: 'Juntar forças', summary: 'Junte duas quantidades e descubra o total. Toda grande construção começa aqui.',
+    flavor: '“Uma ferramenta simples. Infinitas maneiras de construir.”',
+    lore: 'Ao abrir a Caixa de Ferramentas da Matemática, o aprendiz encontra uma pequena peça em forma de mais. Ela reúne o que antes estava separado: pedras para uma ponte, provisões para a jornada, passos de um caminho. A Soma não perde sua utilidade quando chegam ferramentas mais complexas. Ela permanece na caixa, pronta para ajudar em cada nova construção.',
+    explanation: 'Adicionar é juntar ou acrescentar quantidades. Em 2 + 3 = 5, os números 2 e 3 são as parcelas; 5 é a soma, o resultado. Para números naturais, trocar a ordem das parcelas não muda o total: 3 + 2 também é 5. Somar zero mantém a quantidade.',
+    example: 'Há 2 peças na caixa e você coloca mais 3 peças diferentes. Agora há 5: 2 + 3 = 5. Você pode usar essa ferramenta para contar materiais, reunir pontos e calcular totais em problemas futuros.',
+    limit: 'Esta primeira carta trabalha com números naturais e grupos sem itens repetidos. Ao juntar grupos que se sobrepõem, cuidado para não contar o mesmo item duas vezes. Somar não significa sempre aumentar: somar zero mantém o valor; números negativos serão outra etapa. O limite de HP na arena é uma regra do jogo, não da adição.',
+    related: [], source: 'soma',
+    quiz: { question: 'Sua caixa tem 4 peças. Você acrescenta outras 3. Quantas peças há agora?', options: ['1 peça', '7 peças', '12 peças'], answer: 1, feedback: '4 + 3 = 7. As parcelas são 4 e 3, e a soma é 7. A ferramenta reúne as duas quantidades em um total.' },
+  },
 ].map(card => ({ ...card, combat: combatCards[card.id], cost: combatCards[card.id].cost,
   mechanic: `${combatCards[card.id].power}: ${combatCards[card.id].text} Custo: ${combatCards[card.id].cost} de mana. Recarga: 1 rodada completa.` }));
 
 export function normalize(value) { return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
-export function selectCards({ query = '', type = 'Todos', sort = 'number', savedOnly = false, saved = [] } = {}) {
+export function selectCards({ query = '', type = 'Todos', race = 'Todos', sort = 'number', savedOnly = false, saved = [] } = {}) {
   const terms = normalize(query).trim().split(/\s+/).filter(Boolean);
   const rarity = { Comum: 1, Rara: 2, Épica: 3, Lendária: 4 };
-  return cards.filter(c => (type === 'Todos' || c.type === type) && (!savedOnly || saved.includes(c.id)) && terms.every(t => normalize([c.name, c.concept, c.subtitle, c.summary, c.lineage, c.race, c.ability].join(' ')).includes(t)))
+  return cards.filter(c => (race === 'Todos' || c.race === race) && (type === 'Todos' || c.type === type) && (!savedOnly || saved.includes(c.id)) && terms.every(t => normalize([c.name, c.concept, c.subtitle, c.summary, c.lineage, c.race, c.theme, c.ability].join(' ')).includes(t)))
     .sort((a, b) => sort === 'name' ? a.name.localeCompare(b.name, 'pt-BR') : sort === 'cost' ? a.cost - b.cost : sort === 'rarity' ? rarity[b.rarity] - rarity[a.rarity] : a.number - b.number);
 }
 

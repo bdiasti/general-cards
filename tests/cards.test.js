@@ -26,6 +26,25 @@ test('filtros combinam busca, tipo e grimório e suportam resultados vazios', ()
   assert.equal(selectCards({ savedOnly: true }).length, 0);
   assert.equal(selectCards({ type: 'Maldição' }).length, 2);
 });
+
+test('raças separam Matemática de Engenharia de IA e Todos reúne as áreas', () => {
+  assert.deepEqual(selectCards({ race: 'Matemática' }).map(c => c.id), ['soma']);
+  const engineering = selectCards({ race: 'Engenharia de IA' }).map(c => c.id);
+  assert.ok(engineering.includes('hnsw') && engineering.includes('siege'));
+  assert.ok(!engineering.includes('soma'));
+  assert.equal(selectCards({ race: 'Todos' }).length, engineering.length + 1);
+  assert.equal(selectCards({ race: 'Desconhecida' }).length, 0);
+});
+
+test('Soma combina raça, tema, busca, tipo e favoritos sem escapar dos filtros', () => {
+  const selection = { query: 'MATEMATICA caixa ferramentas', race: 'Matemática', type: 'Artefato', savedOnly: true, saved: ['soma', 'keyword'] };
+  assert.deepEqual(selectCards(selection).map(c => c.id), ['soma']);
+  assert.deepEqual(selectCards({ ...selection, race: 'Engenharia de IA' }), []);
+  assert.deepEqual(selectCards({ ...selection, type: 'Feitiço' }), []);
+  assert.deepEqual(selectCards({ ...selection, saved: ['keyword'] }), []);
+  assert.deepEqual(selectCards({ query: 'CAIXA DE FERRAMENTAS' }).map(c => c.id), ['soma']);
+  assert.deepEqual(sanitizeSaved(['soma', 'soma', 'hnsw']), ['soma', 'hnsw']);
+});
 test('ordena sem modificar o catálogo e mantém desempate estável', () => {
   assert.equal(selectCards({ sort: 'cost' })[0].id, 'keyword');
   assert.equal(selectCards({ sort: 'rarity' })[0].rarity, 'Lendária');

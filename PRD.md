@@ -1,6 +1,12 @@
 # Arcana — Crônicas do Conhecimento
 
-**PRD v0.4 · 20 de setembro de 2026 · Status: coleção + arena jogável**
+**PRD v0.5 · 20 de setembro de 2026 · Status: coleção + arena jogável**
+
+## Adição v0.5 — Matemática e Caixa de Ferramentas
+
+Matemática é a segunda raça e área de conhecimento. Sua primeira temática, Caixa de Ferramentas, apresenta conceitos como instrumentos reutilizáveis para resolver problemas. A primeira carta é Soma, a Primeira Ferramenta (011), um Artefato Comum. Ensina parcelas, total, soma com zero e troca de ordem para números naturais, com exemplo concreto e quiz. As próximas ferramentas ainda não foram criadas.
+
+A coleção passa a ter onze cartas: dez de Engenharia de IA e uma de Matemática. Filtros por raça combinam com busca, tipo e grimório. Na arena, raças podem se misturar; Soma tem 16 HP, ataque 2 e Juntar forças por 1 mana, acrescentando até 5 HP a um aliado vivo ferido. Nenhuma regra nova de equipar ou guardar ferramentas é adicionada nesta etapa. Não houve simulação ou ajuste de equilíbrio.
 
 ## Adição v0.4 — O Cerco Sem Fim
 
@@ -12,7 +18,7 @@ Carta 009: Cartógrafa dos Mil Caminhos. Nona carta da coleção, com sétima il
 
 ## Entrega v0.2 — Arena dos Saberes
 
-Além da coleção, o produto oferece duelos de três cartas contra três, contra o computador ou entre duas pessoas no mesmo aparelho. Todas as dez cartas possuem HP, ataque básico, função e um poder exclusivo. Todos os tipos se manifestam como combatentes neste modo; raridade e favoritos não concedem vantagens.
+Além da coleção, o produto oferece duelos de três cartas contra três, contra o computador ou entre duas pessoas no mesmo aparelho. Todas as onze cartas possuem HP, ataque básico, função e um poder exclusivo. Todos os tipos se manifestam como combatentes neste modo; raridade e favoritos não concedem vantagens.
 
 Cada equipe escolhe três cartas diferentes e recebe três pontos de mana por rodada. Os jogadores alternam uma ação por vez: ataque básico gratuito, defesa gratuita com três pontos de escudo, ou poder com custo de um ou dois pontos de mana. Cada carta viva age uma vez na rodada. Ao usar um poder, ele fica indisponível na rodada seguinte. A iniciativa inicial é sorteada e alterna nas rodadas seguintes.
 
@@ -20,7 +26,7 @@ Poderes incluem cura limitada ao HP máximo, dano que ignora escudos, escudo pr�
 
 A partir da rodada nove, uma tempestade causa dano crescente em todas as cartas vivas, ignorando escudos. O último duelo fica salvo no navegador por replay validado. Há retomada, registro de ações, explicação das regras e revanche com iniciativa invertida. Online, contas, ranking e progressão competitiva continuam fora desta entrega.
 
-Equilíbrio é avaliado por simulações pareadas entre todas as 84 formações possíveis, com os dois lados usando o mesmo bot e alternando quem começa. Essa avaliação detecta disparidades e não substitui partidas humanas, outras estratégias ou medição de diversão.
+O relatório histórico v0.3 avaliou equilíbrio por simulações pareadas entre as 84 formações possíveis com nove cartas, com os dois lados usando o mesmo bot e alternando quem começa. Essa avaliação detecta disparidades e não substitui partidas humanas, outras estratégias ou medição de diversão.
 
 **Histórico:** as seções 1–12 abaixo registram o planejamento e a entrega da v0.1. Menções a duelos futuros e mana experimental nessas seções foram superadas pelas regras acima.
 
