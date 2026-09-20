@@ -1,6 +1,6 @@
 # Arcana — Crônicas do Conhecimento
 
-Coleção educativa e arena de duelos de alta fantasia. Dez cartas de Engenharia de IA com HP, ataque, poderes próprios, oito ilustrações geradas para o projeto, conceitos fundamentados e desafios.
+Coleção educativa e arena de duelos de alta fantasia. Onze cartas de Engenharia de IA e Matemática com HP, ataque, poderes próprios, nove ilustrações geradas para o projeto, conceitos fundamentados e desafios.
 
 ## Executar
 
@@ -36,6 +36,8 @@ O grimório e o último duelo ficam no `localStorage` deste navegador; não há 
 A carta 009, **Cartógrafa dos Mil Caminhos**, apresenta HNSW com ilustração própria, explicação, fonte primária, quiz e poder de salto entre adversários. Acesso direto: `/#carta/hnsw`. Prompt da arte: [docs/hnsw-art-prompt.json](docs/hnsw-art-prompt.json).
 
 A carta 010, **O Cerco Sem Fim**, representa prompt injection e guardrails como uma disputa eterna de gato e rato. Poder Brecha e Barreira: 3 de dano ignorando escudo e 2 de escudo próprio. Atributos iniciais, sem nova simulação de equilíbrio. Acesso: `/#carta/siege`.
+
+A raça **Matemática** estreia com a temática **Caixa de Ferramentas** e a carta 011, **Soma, a Primeira Ferramenta**. Adição é apresentada como uma ferramenta básica reutilizável para juntar quantidades; inclui exemplo, limites e quiz. Na arena, Juntar forças acrescenta até 5 HP a um aliado vivo ferido por 1 mana. Atributos iniciais sem balanceamento. Acesso: `/#carta/soma`. As duas raças podem integrar a mesma equipe.
 
 ## Continuar o projeto
 
