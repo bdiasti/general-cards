@@ -1,6 +1,7 @@
 import { combatCards } from './combat-cards.js';
 
 export const sources = {
+  hnsw: { title: 'Malkov e Yashunin — Hierarchical Navigable Small World graphs (2016; revisão 2018)', url: 'https://arxiv.org/abs/1603.09320' },
   rag: { title: 'Lewis et al. — Retrieval-Augmented Generation (2020)', url: 'https://arxiv.org/abs/2005.11401' },
   search: { title: 'Elastic — Search approaches', url: 'https://www.elastic.co/docs/solutions/search/search-approaches' },
   hybrid: { title: 'Elastic — Hybrid search', url: 'https://www.elastic.co/docs/solutions/search/hybrid-search' },
@@ -40,7 +41,7 @@ export const cards = [
     explanation: 'A busca semântica tenta recuperar conteúdo pelo significado. Uma implementação comum representa consultas e documentos como embeddings e compara sua proximidade vetorial.',
     example: 'A pergunta “como recuperar meu acesso?” pode encontrar um documento chamado “Redefinição de senha”.',
     limit: 'Proximidade vetorial não é prova de verdade, equivalência ou relevância. O modelo de embeddings e o domínio influenciam os resultados, especialmente com códigos e termos raros.',
-    related: ['lexical', 'hybrid', 'rag'], source: 'search',
+    related: ['lexical', 'hybrid', 'rag', 'hnsw'], source: 'search',
     quiz: { question: 'Documentos próximos no espaço de embeddings são necessariamente verdadeiros?', options: ['Sim, a distância mede a verdade', 'Sim, desde que a consulta seja curta', 'Não, similaridade não garante verdade'], answer: 2, feedback: 'Embeddings representam padrões de significado. Proximidade não certifica a qualidade nem a veracidade do conteúdo.' },
   },
   {
@@ -97,6 +98,17 @@ export const cards = [
     limit: 'Aqui “contaminação” significa vazamento de avaliação, não qualquer problema de qualidade. Pode ser acidental e não implica ataque. Acerto alto sozinho não comprova vazamento; é necessário investigar a sobreposição.',
     related: ['poison'], source: 'contamination',
     quiz: { question: 'Por que respostas do teste no treino são um problema?', options: ['Podem fazer a avaliação superestimar a generalização', 'Sempre tornam o modelo mais lento', 'Provam que houve um ataque deliberado'], answer: 0, feedback: 'A avaliação deixa de separar bem o que foi aprendido de forma generalizável do que já foi visto. O vazamento pode ser acidental.' },
+  },
+  {
+    id: 'hnsw', number: 9, name: 'Cartógrafa dos Mil Caminhos', concept: 'HNSW', subtitle: 'Hierarchical Navigable Small World · Busca aproximada de vizinhos', type: 'Invocação', rarity: 'Épica', art: 'hnsw', color: 'gold', race: 'Engenharia de IA', lineage: 'Navegantes · Ordem dos Caminhos Suspensos',
+    ability: 'Salto hierárquico', summary: 'Atravesse atalhos nas alturas e refine a busca entre vizinhos próximos.',
+    flavor: '“Do alto, encontro a direção. Entre os caminhos, aproximo o destino.”',
+    lore: 'A cartógrafa começa nos raros faróis das ilhas mais altas. As grandes pontes a conduzem à região desejada; então ela desce para redes cada vez mais densas, comparando caminhos próximos. Sua bússola encontra uma boa rota sem visitar cada casa da cidade.',
+    explanation: 'HNSW organiza elementos, como vetores de embeddings, em um grafo de proximidade com várias camadas. A consulta começa nas camadas superiores, mais esparsas, e desce refinando a busca. É uma técnica de busca aproximada de vizinhos próximos, útil para recuperar vetores semelhantes sem comparar exaustivamente todos eles.',
+    example: 'Em um sistema RAG, a pergunta vira um embedding. Um índice HNSW ajuda a localizar vetores próximos dos trechos armazenados, que podem ser recuperados e enviados ao modelo como contexto.',
+    limit: 'HNSW não gera embeddings nem respostas e não garante encontrar sempre os vizinhos exatos. Qualidade do índice, distância escolhida e parâmetros afetam memória, velocidade e recall. Os saltos de dano da arena são uma metáfora de navegação; não simulam o algoritmo.',
+    related: ['semantic', 'rag', 'hybrid'], source: 'hnsw',
+    quiz: { question: 'Como HNSW acelera a busca de vetores semelhantes?', options: ['Percorre um grafo em camadas, refinando uma busca aproximada', 'Compara obrigatoriamente todos os vetores a cada consulta', 'Gera uma resposta pronta sem recuperar vizinhos'], answer: 0, feedback: 'As camadas ajudam a chegar a uma região promissora e refinar a busca. A aproximação economiza comparações, mas não garante os vizinhos exatos em toda consulta.' },
   },
 ].map(card => ({ ...card, combat: combatCards[card.id], cost: combatCards[card.id].cost,
   mechanic: `${combatCards[card.id].power}: ${combatCards[card.id].text} Custo: ${combatCards[card.id].cost} de mana. Recarga: 1 rodada completa.` }));

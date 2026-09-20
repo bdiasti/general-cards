@@ -1,10 +1,14 @@
 # Arcana — Crônicas do Conhecimento
 
-**PRD v0.2 · 20 de setembro de 2026 · Status: coleção + arena jogável**
+**PRD v0.3 · 20 de setembro de 2026 · Status: coleção + arena jogável**
+
+## Adição v0.3 — HNSW
+
+Carta 009: Cartógrafa dos Mil Caminhos. Nona carta da coleção, com sétima ilustração distinta e personagem criado para Arcana. Ensina a busca aproximada em grafos de proximidade com camadas, apoiada no artigo de Malkov e Yashunin (https://arxiv.org/abs/1603.09320). Inclui exemplo em RAG, limitações da aproximação, relações com busca semântica/híbrida e quiz. Na arena, o poder Salto hierárquico atinge um alvo e salta para outro inimigo vivo; o texto distingue essa metáfora do funcionamento real do algoritmo.
 
 ## Entrega v0.2 — Arena dos Saberes
 
-Além da coleção, o produto oferece duelos de três cartas contra três, contra o computador ou entre duas pessoas no mesmo aparelho. Todas as oito cartas possuem HP, ataque básico, função e um poder exclusivo. Todos os tipos se manifestam como combatentes neste modo; raridade e favoritos não concedem vantagens.
+Além da coleção, o produto oferece duelos de três cartas contra três, contra o computador ou entre duas pessoas no mesmo aparelho. Todas as nove cartas possuem HP, ataque básico, função e um poder exclusivo. Todos os tipos se manifestam como combatentes neste modo; raridade e favoritos não concedem vantagens.
 
 Cada equipe escolhe três cartas diferentes e recebe três pontos de mana por rodada. Os jogadores alternam uma ação por vez: ataque básico gratuito, defesa gratuita com três pontos de escudo, ou poder com custo de um ou dois pontos de mana. Cada carta viva age uma vez na rodada. Ao usar um poder, ele fica indisponível na rodada seguinte. A iniciativa inicial é sorteada e alterna nas rodadas seguintes.
 
@@ -12,7 +16,7 @@ Poderes incluem cura limitada ao HP máximo, dano que ignora escudos, escudo pr�
 
 A partir da rodada nove, uma tempestade causa dano crescente em todas as cartas vivas, ignorando escudos. O último duelo fica salvo no navegador por replay validado. Há retomada, registro de ações, explicação das regras e revanche com iniciativa invertida. Online, contas, ranking e progressão competitiva continuam fora desta entrega.
 
-Equilíbrio é avaliado por simulações pareadas entre todas as 56 formações possíveis, com os dois lados usando o mesmo bot e alternando quem começa. Essa avaliação detecta disparidades e não substitui partidas humanas, outras estratégias ou medição de diversão.
+Equilíbrio é avaliado por simulações pareadas entre todas as 84 formações possíveis, com os dois lados usando o mesmo bot e alternando quem começa. Essa avaliação detecta disparidades e não substitui partidas humanas, outras estratégias ou medição de diversão.
 
 **Histórico:** as seções 1–12 abaixo registram o planejamento e a entrega da v0.1. Menções a duelos futuros e mana experimental nessas seções foram superadas pelas regras acima.
 

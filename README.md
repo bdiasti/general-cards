@@ -1,6 +1,6 @@
 # Arcana — Crônicas do Conhecimento
 
-Coleção educativa e arena de duelos de alta fantasia. Oito cartas de Engenharia de IA com HP, ataque, poderes próprios, seis ilustrações originais, conceitos fundamentados e desafios.
+Coleção educativa e arena de duelos de alta fantasia. Nove cartas de Engenharia de IA com HP, ataque, poderes próprios, sete ilustrações geradas para o projeto, conceitos fundamentados e desafios.
 
 ## Executar
 
@@ -34,6 +34,8 @@ Na [Arena dos Saberes](https://arcana-conhecimento.contaaxie1990.chatgpt.site/#a
 
 O grimório e o último duelo ficam no `localStorage` deste navegador; não há conta ou sincronização. A partida salva é reconstruída a partir de ações validadas pelo motor. Os desafios educativos não persistem pontuação. Multiplayer online não está incluído nesta edição.
 
+A carta 009, **Cartógrafa dos Mil Caminhos**, apresenta HNSW com ilustração própria, explicação, fonte primária, quiz e poder de salto entre adversários. Acesso direto: `/#carta/hnsw`. Prompt da arte: [docs/hnsw-art-prompt.json](docs/hnsw-art-prompt.json).
+
 ## Continuar o projeto
 
 - Produto, requisitos e roadmap: [PRD.md](PRD.md).
@@ -49,6 +51,6 @@ O grimório e o último duelo ficam no `localStorage` deste navegador; não há 
 - Prompts completos e registro da ferramenta integrada de geração: [docs/art-prompts.json](docs/art-prompts.json).
 - Imagens geradas: [public/art/](public/art/).
 
-Para uma nova carta, crie um objeto seguindo as oito existentes, use um ID estável, inclua fontes/limites/desafio, adicione a imagem e uma entrada em `combat-cards.js`, e atualize os totais de edição no HTML e no template de carta. Execute testes, simulações de equilíbrio e revise a carta em celular e desktop. Ao mudar regras incompatíveis com partidas salvas, incremente `RULES.version`.
+Para uma nova carta, crie um objeto seguindo as cartas existentes, use um ID estável, inclua fontes/limites/desafio, adicione a imagem e uma entrada em `combat-cards.js`, e atualize os totais de edição no HTML e no template de carta. Execute testes, simulações de equilíbrio e revise a carta em celular e desktop. Ao mudar regras incompatíveis com partidas salvas, incremente `RULES.version`.
 
 As cartas de busca por palavra e busca híbrida compartilham ilustrações de sua família nesta edição. PNGs são originais e precisam de variantes otimizadas antes de produção. Fontes Google são opcionais, com fallbacks locais. O projeto não depende de Godot ou Three.js neste marco; a justificativa está no PRD.

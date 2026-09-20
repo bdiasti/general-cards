@@ -18,7 +18,7 @@ test('cada carta possui identidade única, arte, fonte e todos os componentes ed
 test('busca ignora acentos e caixa, aceita múltiplos termos e consulta conceito e habilidade', () => {
   assert.deepEqual(selectCards({ query: 'GERACAO recuperacao' }).map(c => c.id), ['rag']);
   assert.deepEqual(selectCards({ query: 'MEMORIA ancestrais' }).map(c => c.id), ['rag']);
-  assert.equal(selectCards({ query: '   ' }).length, 8);
+  assert.equal(selectCards({ query: '   ' }).length, cards.length);
   assert.equal(selectCards({ query: '<script>alert(1)</script>' }).length, 0);
 });
 test('filtros combinam busca, tipo e grimório e suportam resultados vazios', () => {
@@ -36,4 +36,15 @@ test('persistência descarta dados incompatíveis, ids desconhecidos e duplicata
   assert.deepEqual(sanitizeSaved({ rag: true }), []);
   assert.deepEqual(sanitizeSaved(null), []);
   assert.deepEqual(sanitizeSaved(['rag', 'rag', 'missing', 42, 'agent']), ['rag', 'agent']);
+});
+
+test('HNSW é encontrável pelo algoritmo e pela habilidade e pode ser salvo no grimório', () => {
+  assert.deepEqual(selectCards({ query: 'hnsw' }).map(c => c.id), ['hnsw']);
+  assert.deepEqual(selectCards({ query: 'SALTO HIERARQUICO' }).map(c => c.id), ['hnsw']);
+  assert.deepEqual(selectCards({ query: 'hnsw', type: 'Invocação', savedOnly: true, saved: ['hnsw'] }).map(c => c.id), ['hnsw']);
+  assert.deepEqual(sanitizeSaved(['hnsw', 'rag', 'hnsw']), ['hnsw', 'rag']);
+  const hnsw = cards.find(c => c.id === 'hnsw');
+  assert.ok(hnsw.combat.hp > 0 && hnsw.combat.attack > 0);
+  assert.equal(hnsw.art, 'hnsw');
+  assert.equal(hnsw.source, 'hnsw');
 });

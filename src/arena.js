@@ -11,7 +11,8 @@ let selected = null, kind = 'attack', timer, savedMatch, notice = '';
 try { const raw = JSON.parse(localStorage.getItem(key)); if (raw) { restoreMatch(raw); savedMatch = raw; } } catch { /* Invalid or unavailable storage does not block play. */ }
 const name = side => mode === 'ai' ? (side ? 'Conselho Arcano' : 'Sua companhia') : `Jogador ${side + 1}`;
 const stats = c => `<span class="stat-hp">${c.combat.hp} <small>HP</small></span><span>${c.combat.attack} <small>ATQ</small></span><span>${c.combat.cost} <small>MANA</small></span>`;
-const namesIn = text => text.replace(/\b(rag|lexical|semantic|agent|keyword|hybrid|poison|contamination)\b/g, id => byId[id].name);
+const cardIdPattern = new RegExp(`\\b(${cards.map(c => c.id).join('|')})\\b`, 'g');
+const namesIn = text => text.replace(cardIdPattern, id => byId[id].name);
 function announce(message) { live.textContent = namesIn(message); }
 function save() {
   const raw = { version: RULES.version, mode, teams, first, actions: match.history };
@@ -23,7 +24,7 @@ function restoreFocus(focusKey) {
 function renderDraft(focusKey) {
   const chosen = teams[draftSide];
   root.innerHTML = `<div class="arena-lobby">
-    <div class="arena-intro"><div><span class="arena-kicker">DUELOS TÁTICOS · 3 CONTRA 3</span><h3>Monte sua companhia.</h3><p>Três cartas. Uma estratégia. Escolha seus aliados e transforme conhecimento em poder.</p></div><div class="arena-format"><b>8 cartas livres</b><span>Sem compras. Sem vantagem por raridade.</span></div></div>
+    <div class="arena-intro"><div><span class="arena-kicker">DUELOS TÁTICOS · 3 CONTRA 3</span><h3>Monte sua companhia.</h3><p>Três cartas. Uma estratégia. Escolha seus aliados e transforme conhecimento em poder.</p></div><div class="arena-format"><b>${cards.length} cartas livres</b><span>Sem compras. Sem vantagem por raridade.</span></div></div>
     <div class="arena-config"><div class="mode-switch" role="group" aria-label="Modo de jogo"><button data-mode="ai" data-focus="mode-ai" aria-pressed="${mode === 'ai'}">Contra o computador</button><button data-mode="local" data-focus="mode-local" aria-pressed="${mode === 'local'}">2 jogadores locais</button></div>${savedMatch ? '<button class="arena-secondary" data-arena="resume">Retomar último duelo</button>' : ''}</div>
     <div class="draft-heading"><h4>${mode === 'local' ? `Equipe do jogador ${draftSide + 1}` : 'Escolha sua equipe'}</h4><span>${chosen.length} / 3 escolhidas · 1 vaga por carta</span></div>
     <div class="draft-grid">${cards.map(c => `<button class="draft-card ${chosen.includes(c.id) ? 'is-chosen' : ''}" data-pick="${c.id}" data-focus="pick-${c.id}" aria-pressed="${chosen.includes(c.id)}" ${chosen.length === 3 && !chosen.includes(c.id) ? 'disabled' : ''} aria-label="${chosen.includes(c.id) ? 'Remover' : 'Selecionar'} ${c.name}, ${c.combat.hp} HP, ${c.combat.attack} ataque, ${c.combat.role}"><img src="/public/art/${c.art}.png" alt="" loading="lazy" width="100" height="130"><span class="draft-copy"><span class="draft-role">${c.combat.role}${chosen.includes(c.id) ? ' · SELECIONADA' : ''}</span><strong>${c.name}</strong><span class="combat-stats">${stats(c)}</span><span class="draft-power"><b>${c.combat.power}</b> ${c.combat.text}</span></span></button>`).join('')}</div>

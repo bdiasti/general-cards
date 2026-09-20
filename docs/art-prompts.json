@@ -1,7 +1,7 @@
 {
   "method": "Ferramenta integrada image_gen",
   "created": "2026-09-20",
-  "notes": "Seis ilustrações originais. Busca por palavra compartilha lexical; busca híbrida compartilha semantic nesta edição alfa.",
+  "notes": "Sete ilustrações geradas para o projeto. Busca por palavra compartilha lexical; busca híbrida compartilha semantic. HNSW tem uma arte própria. Geração não representa garantia de exclusividade jurídica.",
   "prompts": [
     {
       "id": "rag",
@@ -26,6 +26,13 @@
     {
       "id": "contamination",
       "prompt": "Create a premium collectible fantasy trading card ARTWORK, no typography, no borders, no letters. Portrait 2:3 composition. Painterly detailed oil and gouache illustration, sophisticated classic high fantasy book cover, tactile brushwork, dramatic chiaroscuro, muted forest emerald and antique gold accents, atmospheric depth. Entire canvas is artwork for a website card. Original characters in a world inspired by epic elven, dwarven and wizard fantasy. A medieval scholar at an examination desk discovering a golden answer scroll secretly reflected inside a magical mirror, two identical illuminated parchments side by side, pale gold and icy blue highlights, ancient vaulted chamber, allegory of leaked answers, sophisticated atmosphere. "
+    },
+    {
+      "id": "hnsw",
+      "prompt": "Use case: stylized-concept. Create one premium collectible fantasy card artwork for Arcana, a knowledge-themed card game. Portrait 2:3, ideally 1024 x 1536 or higher. Pure illustration with NO typography, NO letters, NO numbers, NO card border, NO watermark. A wholly original character called the Cartographer of a Thousand Paths personifies HNSW, a multilayer proximity graph used for approximate nearest-neighbor search. A resourceful young dark-skinned human woman with short natural black curls, an emerald explorer's coat with original geometric brass embroidery, leather map harness and a luminous brass navigational compass stands on an ancient moss-covered lookout bridge in the foreground. Her face and upper body are prominent in the upper-middle third, confident and thoughtful, not resembling any known character or real person. In the background and around her, a wondrous vertical city of floating basalt terraces forms three clearly separated elevation levels: a few distant golden waypoints connected by long bridges in the upper sky, more waypoints and shorter connections in a middle layer, many closely connected glowing cyan nodes and small bridges in the lower city. One continuous golden illuminated route descends from the sparse high layer into the dense lower layer toward a brilliant cyan destination. Treat the graph as worldbuilding, not a technical diagram. Depth, believable stone architecture, beautifully detailed tactile oil-and-gouache painterly illustration, dramatic chiaroscuro, atmospheric forest-green shadows, antique gold and restrained cyan light, aged stone and drifting mist. Keep the important character face, compass and layered bridges readable when the artwork is cropped to its top 60 percent in a trading card. Sophisticated original fantasy book-cover aesthetic matching a dark forest and antique-gold collectible game. Do not use any existing franchise, recognizable fictional character, branded symbol, red eye motif, elf ears, or artist imitation.",
+      "method": "Ferramenta integrada image_gen",
+      "created": "2026-09-20",
+      "asset": "public/art/hnsw.png"
     }
   ]
 }

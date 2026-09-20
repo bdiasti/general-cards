@@ -25,7 +25,7 @@ for (let a = 0; a < teams.length; a++) for (let b = a + 1; b < teams.length; b++
   if (games % 400 === 0) console.log(`${games} duelos simulados`);
 }
 const percent = value => Number((value * 100).toFixed(2));
-const report = { seed: 20260920, method: 'Todas as equipes de 3 cartas; confrontos pareados com iniciativa invertida; mesmo bot tático para os dois lados. Empate vale meio ponto. Sem jogadores humanos.', quick, games, teams: teams.length, draws, firstPlayerScore: percent((firstWins + draws / 2) / games), averageRounds: Number((rounds / games).toFixed(2)), longest,
+const report = { seed: 20260920, method: `Todas as equipes de 3 cartas; ${quick ? 'amostra de pares de equipes' : 'todos os pares diferentes de equipes'} com iniciativa invertida; mesmo bot tático para os dois lados. Empate vale meio ponto. Sem jogadores humanos.`, quick, games, teams: teams.length, draws, firstPlayerScore: percent((firstWins + draws / 2) / games), averageRounds: Number((rounds / games).toFixed(2)), longest,
   cards: Object.entries(perCard).map(([id, c]) => ({ id, games: c.games, scorePercent: percent(c.score / c.games) })),
   strongestTeams: perTeam.sort((a, b) => b.score / b.games - a.score / a.games).slice(0, 5).map(t => ({ team: t.team, games: t.games, scorePercent: percent(t.score / t.games) })) };
 console.log(JSON.stringify(report, null, 2));

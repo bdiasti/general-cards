@@ -77,11 +77,22 @@ export function act(state, action) {
       s.log.push(`${u.id} usou ${c.power}: ${target.id} recuperou ${healed} HP.`);
     } else {
       const base = action.kind === 'attack' ? c.attack : c.value;
-      const amount = Math.max(0, base - (u.weak ? 2 : 0)) + (target.marked ? 2 : 0);
+      const weakness = u.weak ? 2 : 0;
+      const amount = Math.max(0, base - weakness) + (target.marked ? 2 : 0);
       u.weak = false; target.marked = false;
       const dealt = damage(target, amount, action.kind === 'power' && c.effect === 'pierce');
       s.log.push(`${u.id} ${action.kind === 'attack' ? 'atacou' : `usou ${c.power} contra`} ${target.id}: ${dealt} de dano${target.hp === 0 ? ' · carta derrotada' : ''}.`);
       if (action.kind === 'power') {
+        if (c.effect === 'hop') {
+          const other = s.teams[1 - side].reduce((lowest, candidate, index) =>
+            index !== action.target && candidate.hp > 0 && (!lowest || candidate.hp < lowest.hp) ? candidate : lowest, null);
+          if (other) {
+            const hopAmount = Math.max(0, c.splash - weakness) + (other.marked ? 2 : 0);
+            other.marked = false;
+            const hopDealt = damage(other, hopAmount);
+            s.log.push(`${u.id} saltou para ${other.id}: ${hopDealt} de dano${other.hp === 0 ? ' · carta derrotada' : ''}.`);
+          }
+        }
         if (c.effect === 'bulwark') u.shield = Math.max(u.shield, 2);
         if (c.effect === 'poison' && target.hp > 0) target.poison = 2;
         if (c.effect === 'mark' && target.hp > 0) target.marked = true;
@@ -111,9 +122,11 @@ export function evaluate(state, side) {
 }
 export function chooseAction(state, random = Math.random) {
   const choices = legalActions(state), side = state.active;
+  // Hypothetical moves only need the board; replay and display history do not affect rules.
+  const branch = { ...state, history: [], log: [] };
   let best = -Infinity, finalists = [];
   for (const action of choices) {
-    const next = act(state, action);
+    const next = act(branch, action);
     // Small action-economy cost prevents spending scarce mana for no benefit.
     const score = evaluate(next, side) - (action.kind === 'power' ? catalog[state.teams[side][action.actor].id].cost * .12 : 0);
     if (score > best + .001) { best = score; finalists = [action]; }

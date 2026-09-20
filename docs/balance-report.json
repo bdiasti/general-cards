@@ -1,73 +1,78 @@
 {
   "seed": 20260920,
-  "method": "Todas as equipes de 3 cartas; confrontos pareados com iniciativa invertida; mesmo bot tático para os dois lados. Empate vale meio ponto. Sem jogadores humanos.",
+  "method": "Todas as equipes de 3 cartas; todos os pares diferentes de equipes com iniciativa invertida; mesmo bot tático para os dois lados. Empate vale meio ponto. Sem jogadores humanos.",
   "quick": false,
-  "games": 3080,
-  "teams": 56,
-  "draws": 65,
-  "firstPlayerScore": 51.12,
-  "averageRounds": 8.31,
-  "longest": 14,
+  "games": 6972,
+  "teams": 84,
+  "draws": 119,
+  "firstPlayerScore": 52.23,
+  "averageRounds": 8.08,
+  "longest": 15,
   "cards": [
     {
       "id": "rag",
-      "games": 2310,
-      "scorePercent": 51.36
+      "games": 4648,
+      "scorePercent": 52.71
     },
     {
       "id": "lexical",
-      "games": 2310,
-      "scorePercent": 49.13
+      "games": 4648,
+      "scorePercent": 51.34
     },
     {
       "id": "semantic",
-      "games": 2310,
-      "scorePercent": 52.27
+      "games": 4648,
+      "scorePercent": 50.95
     },
     {
       "id": "agent",
-      "games": 2310,
-      "scorePercent": 50.04
+      "games": 4648,
+      "scorePercent": 49.33
     },
     {
       "id": "keyword",
-      "games": 2310,
-      "scorePercent": 48.83
+      "games": 4648,
+      "scorePercent": 48.61
     },
     {
       "id": "hybrid",
-      "games": 2310,
-      "scorePercent": 47.92
+      "games": 4648,
+      "scorePercent": 46.97
     },
     {
       "id": "poison",
-      "games": 2310,
-      "scorePercent": 50.91
+      "games": 4648,
+      "scorePercent": 50.26
     },
     {
       "id": "contamination",
-      "games": 2310,
-      "scorePercent": 49.52
+      "games": 4648,
+      "scorePercent": 50.95
+    },
+    {
+      "id": "hnsw",
+      "games": 4648,
+      "scorePercent": 48.88
     }
   ],
   "strongestTeams": [
     {
       "team": [
         "lexical",
-        "agent",
-        "poison"
+        "poison",
+        "hnsw"
       ],
-      "games": 110,
-      "scorePercent": 69.55
+      "games": 166,
+      "scorePercent": 68.07
     },
     {
       "team": [
-        "keyword",
-        "hybrid",
-        "contamination"
+        "rag",
+        "lexical",
+        "agent"
       ],
-      "games": 110,
-      "scorePercent": 66.82
+      "games": 166,
+      "scorePercent": 65.96
     },
     {
       "team": [
@@ -75,26 +80,26 @@
         "lexical",
         "poison"
       ],
-      "games": 110,
-      "scorePercent": 65
+      "games": 166,
+      "scorePercent": 64.16
     },
     {
       "team": [
         "rag",
-        "keyword",
-        "poison"
+        "agent",
+        "keyword"
       ],
-      "games": 110,
-      "scorePercent": 63.64
+      "games": 166,
+      "scorePercent": 63.86
     },
     {
       "team": [
         "lexical",
         "semantic",
-        "poison"
+        "hnsw"
       ],
-      "games": 110,
-      "scorePercent": 63.64
+      "games": 166,
+      "scorePercent": 63.55
     }
   ]
 }

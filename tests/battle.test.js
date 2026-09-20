@@ -84,6 +84,52 @@ test('convergência cura o aliado mais ferido e não ressuscita', () => {
   const next = act(s, { actor: 0, kind: 'power', target: 0 });
   assert.equal(next.teams[0][1].hp, 0); assert.equal(next.teams[0][2].hp, 7);
 });
+test('salto hierárquico atinge o alvo e outro inimigo vivo com menor HP; empates seguem posição', () => {
+  const s = createBattle([['hnsw', 'rag', 'keyword'], teams[1]]);
+  s.teams[1][1].hp = 7; s.teams[1][2].hp = 7;
+  const next = act(s, { actor: 0, kind: 'power', target: 0 });
+  assert.equal(next.teams[1][0].hp, combatCards.lexical.hp - 4);
+  assert.equal(next.teams[1][1].hp, 5); assert.equal(next.teams[1][2].hp, 7);
+  assert.equal(next.mana[0], 1); assert.equal(next.teams[0][0].cooldown, RULES.cooldown);
+  assert.equal(s.teams[1][1].hp, 7);
+  s.teams[1][0].hp = 3; s.teams[1][2].hp = 6;
+  const lower = act(s, { actor: 0, kind: 'power', target: 0 });
+  assert.equal(lower.teams[1][0].hp, 0); // O salto continua mesmo após derrotar o alvo principal.
+  assert.equal(lower.teams[1][1].hp, 7); assert.equal(lower.teams[1][2].hp, 4);
+});
+test('salto hierárquico respeita os escudos dos dois alvos e ignora cartas eliminadas', () => {
+  const s = createBattle([['hnsw', 'rag', 'keyword'], teams[1]]);
+  s.teams[1][0].shield = 3;
+  s.teams[1][1].hp = 0;
+  s.teams[1][2].hp = 5; s.teams[1][2].shield = 3;
+  const next = act(s, { actor: 0, kind: 'power', target: 0 });
+  assert.equal(next.teams[1][0].hp, combatCards.lexical.hp - 1); assert.equal(next.teams[1][0].shield, 0);
+  assert.equal(next.teams[1][1].hp, 0);
+  assert.equal(next.teams[1][2].hp, 5); assert.equal(next.teams[1][2].shield, 1);
+});
+test('salto hierárquico não volta ao alvo único nem revive cartas; queda dupla encerra o duelo', () => {
+  const s = createBattle([['hnsw', 'rag', 'keyword'], teams[1]]);
+  s.teams[1][1].hp = 0; s.teams[1][2].hp = 0;
+  const single = act(s, { actor: 0, kind: 'power', target: 0 });
+  assert.equal(single.teams[1][0].hp, combatCards.lexical.hp - 4);
+  assert.equal(single.teams[1][1].hp, 0); assert.equal(single.teams[1][2].hp, 0);
+  s.teams[1][0].hp = 4; s.teams[1][2].hp = 2;
+  const finish = act(s, { actor: 0, kind: 'power', target: 0 });
+  assert.equal(finish.winner, 0); assert.deepEqual(finish.teams[1].map(u => u.hp), [0, 0, 0]);
+});
+test('fraqueza reduz cada acerto do salto e cada alvo consome sua própria marca', () => {
+  const s = createBattle([['hnsw', 'rag', 'keyword'], teams[1]]);
+  s.teams[0][0].weak = true;
+  s.teams[1][0].marked = true; s.teams[1][1].hp = 7; s.teams[1][1].marked = true;
+  const marked = act(s, { actor: 0, kind: 'power', target: 0 });
+  assert.equal(marked.teams[1][0].hp, combatCards.lexical.hp - 4); // 4 - 2 + 2
+  assert.equal(marked.teams[1][1].hp, 5); // 2 - 2 + 2
+  assert.equal(marked.teams[0][0].weak, false);
+  assert.equal(marked.teams[1][0].marked, false); assert.equal(marked.teams[1][1].marked, false);
+  s.teams[1][1].marked = false;
+  const unmarked = act(s, { actor: 0, kind: 'power', target: 0 });
+  assert.equal(unmarked.teams[1][1].hp, 7); // Dano adicional reduzido a zero.
+});
 test('derrotados não agem, vitória encerra imediatamente, ações seguintes são rejeitadas', () => {
   const s = createBattle(teams);
   s.teams[1].forEach((u, i) => { u.hp = i ? 0 : 1; });

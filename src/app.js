@@ -32,7 +32,7 @@ function cardMarkup(card, hero = false) {
       <div class="card-top"><span class="card-faction">${icon('spark')} ENGENHARIA DE IA</span><span class="mana" aria-label="Poder custa ${card.cost} de mana">${card.cost}</span></div>
       <div class="card-parchment"><div class="concept-line"><span>${icon(card.type === 'Maldição' ? 'shield' : 'spark')}</span><h4>${card.concept}</h4></div><p>${card.summary}</p><div class="card-flavor">${card.flavor}</div></div>
       <div class="card-combat"><span class="stat-hp">${card.combat.hp} <small>HP</small></span><span>${card.combat.attack} <small>ATQ</small></span><span>${card.cost} <small>MANA</small></span></div>
-      <div class="card-bottom"><span class="rarity"><span aria-hidden="true">${card.rarity === 'Lendária' ? '✦' : '◆'}</span> ${card.rarity}</span><span>ARC · ${String(card.number).padStart(3, '0')} / 008</span></div>
+      <div class="card-bottom"><span class="rarity"><span aria-hidden="true">${card.rarity === 'Lendária' ? '✦' : '◆'}</span> ${card.rarity}</span><span>ARC · ${String(card.number).padStart(3, '0')} / ${String(cards.length).padStart(3, '0')}</span></div>
     </button>
     ${hero ? '' : `<button class="save-card ${saved.includes(card.id) ? 'saved' : ''}" data-save="${card.id}" aria-label="${saved.includes(card.id) ? 'Remover' : 'Adicionar'} ${escape(card.name)} ${saved.includes(card.id) ? 'do' : 'ao'} grimório" aria-pressed="${saved.includes(card.id)}">${icon(saved.includes(card.id) ? 'check' : 'bookmark')}</button>`}
   </article>`;
@@ -98,7 +98,7 @@ function showGuide() {
 
 function showRealms() {
   currentCard = null;
-  showDialog(`<div class="info-dialog"><div class="eyebrow">ATLAS DO CONHECIMENTO</div><h2 id="dialog-title">Os reinos de Arcana</h2><p class="info-intro">Cada domínio do mundo real encontra uma linhagem na fantasia.</p><div class="realm-feature">${icon('spark')}<div><span class="eyebrow">DISPONÍVEL · 8 CARTAS</span><h3>Os Arquitetos do Invisível</h3><p>Engenharia de IA reúne elfos arquivistas, anões das runas, oráculos e patrulheiros. Cada linhagem revela uma maneira de trabalhar com informação.</p><button class="text-btn" data-action="explore">Explorar Engenharia de IA ${icon('arrow')}</button></div></div><h3>Territórios em estudo</h3><div class="future-list"><p><b>Forjadores de Sistemas</b><span>Engenharia de software</span></p><p><b>Guardiões dos Selos</b><span>Segurança da informação</span></p><p><b>Cartógrafos do Acaso</b><span>Estatística e ciência de dados</span></p></div><p class="prototype-note">Propostas de expansão, ainda sem cartas. Os próximos reinos serão definidos junto com você.</p></div>`);
+  showDialog(`<div class="info-dialog"><div class="eyebrow">ATLAS DO CONHECIMENTO</div><h2 id="dialog-title">Os reinos de Arcana</h2><p class="info-intro">Cada domínio do mundo real encontra uma linhagem na fantasia.</p><div class="realm-feature">${icon('spark')}<div><span class="eyebrow">DISPONÍVEL · ${cards.length} CARTAS</span><h3>Os Arquitetos do Invisível</h3><p>Engenharia de IA reúne elfos arquivistas, anões das runas, oráculos e patrulheiros. Cada linhagem revela uma maneira de trabalhar com informação.</p><button class="text-btn" data-action="explore">Explorar Engenharia de IA ${icon('arrow')}</button></div></div><h3>Territórios em estudo</h3><div class="future-list"><p><b>Forjadores de Sistemas</b><span>Engenharia de software</span></p><p><b>Guardiões dos Selos</b><span>Segurança da informação</span></p><p><b>Cartógrafos do Acaso</b><span>Estatística e ciência de dados</span></p></div><p class="prototype-note">Propostas de expansão, ainda sem cartas. Os próximos reinos serão definidos junto com você.</p></div>`);
 }
 
 function closeDialog() { dialog.close(); }
@@ -160,5 +160,6 @@ function readHash() { const id = location.hash.match(/^#carta\/([a-z]+)$/)?.[1];
 window.addEventListener('popstate', readHash);
 window.addEventListener('hashchange', readHash);
 window.addEventListener('storage', e => { if (e.key === storageKey || e.key === null) { try { saved = sanitizeSaved(JSON.parse(localStorage.getItem(storageKey) || '[]')); } catch { saved = []; } state.saved = saved; renderGrid(); if (currentCard) updateDetailSave(currentCard); } });
-document.querySelector('#hero-cards').innerHTML = [cards[1], cards[2], cards[0]].map(c => cardMarkup(c, true)).join('');
+document.querySelector('#hero-cards').innerHTML = [cards[1], cards[0], cards.find(c => c.id === 'hnsw')].map(c => cardMarkup(c, true)).join('');
+document.querySelectorAll('[data-card-count]').forEach(el => { el.textContent = String(cards.length).padStart(Number(el.dataset.cardCount) || 1, '0'); });
 hydrateIcons(); renderGrid(); readHash();
