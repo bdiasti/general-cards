@@ -1,6 +1,6 @@
 # Arcana — Crônicas do Conhecimento
 
-Coleção educativa e arena de duelos de alta fantasia. Onze cartas de Engenharia de IA e Matemática com HP, ataque, poderes próprios, nove ilustrações geradas para o projeto, conceitos fundamentados e desafios.
+Coleção educativa e arena de duelos de alta fantasia. Doze cartas de Engenharia de IA, Matemática e Soft-skill com HP, ataque, poderes próprios, dez ilustrações geradas para o projeto, conceitos fundamentados e desafios.
 
 ## Executar
 
@@ -38,6 +38,8 @@ A carta 009, **Cartógrafa dos Mil Caminhos**, apresenta HNSW com ilustração p
 A carta 010, **O Cerco Sem Fim**, representa prompt injection e guardrails como uma disputa eterna de gato e rato. Poder Brecha e Barreira: 3 de dano ignorando escudo e 2 de escudo próprio. Atributos iniciais, sem nova simulação de equilíbrio. Acesso: `/#carta/siege`.
 
 A raça **Matemática** estreia com a temática **Caixa de Ferramentas** e a carta 011, **Soma, a Primeira Ferramenta**. Adição é apresentada como uma ferramenta básica reutilizável para juntar quantidades; inclui exemplo, limites e quiz. Na arena, Juntar forças acrescenta até 5 HP a um aliado vivo ferido por 1 mana. Atributos iniciais sem balanceamento. Acesso: `/#carta/soma`. As duas raças podem integrar a mesma equipe.
+
+A raça **Soft-skill** estreia com **Nilo, o Companheiro Leal** (carta 012), um hobbit que representa humildade, inteligência emocional e parceria para entregar valor ao cliente em TI. Tema: Jornada Compartilhada. O poder Ombro a ombro restaura até 4 HP e remove fraqueza de outro aliado vivo. Acesso: `/#carta/humildade`. A inspiração está registrada em [repertorio_fantasia_bd.md](repertorio_fantasia_bd.md), FANT-002.
 
 ## Continuar o projeto
 

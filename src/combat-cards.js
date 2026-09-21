@@ -1,5 +1,6 @@
 // One slot per card: rarity never changes combat strength.
 export const combatCards = {
+  humildade: { hp: 20, attack: 2, role: 'Parceiro', cost: 2, power: 'Ombro a ombro', target: 'ally', text: 'Restaura até 4 HP e remove a fraqueza de outro aliado vivo. Exige um aliado ferido ou com fraqueza; não remove veneno nem marca.', effect: 'support', value: 4 },
   soma: { hp: 16, attack: 2, role: 'Ferramenta', cost: 1, power: 'Juntar forças', target: 'ally', text: 'Acrescenta 5 HP a um aliado vivo ferido, incluindo esta carta, sem ultrapassar seu HP máximo.', effect: 'heal', value: 5 },
   siege: { hp: 20, attack: 3, role: 'Vigilância', cost: 2, power: 'Brecha e Barreira', target: 'enemy', text: 'Causa 3 de dano ignorando o escudo do alvo e recebe 2 de escudo até a próxima rodada. Não acumula com escudo existente.', effect: 'siege', value: 3 },
   rag: { hp: 20, attack: 3, role: 'Suporte', cost: 2, power: 'Memória restauradora', target: 'ally', text: 'Restaura 6 HP de um aliado vivo, sem ultrapassar o máximo.', effect: 'heal', value: 6 },

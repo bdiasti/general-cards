@@ -21,7 +21,10 @@ export function legalActions(state) {
     const c = catalog[u.id];
     if (u.cooldown || state.mana[side] < c.cost) return;
     state.teams[c.target === 'ally' ? side : 1 - side].forEach((t, target) => {
-      if (t.hp > 0 && (c.target !== 'ally' || t.hp < catalog[t.id].hp)) result.push({ actor, kind: 'power', target });
+      const validAlly = c.effect === 'support'
+        ? target !== actor && (t.hp < catalog[t.id].hp || t.weak)
+        : t.hp < catalog[t.id].hp;
+      if (t.hp > 0 && (c.target !== 'ally' || validAlly)) result.push({ actor, kind: 'power', target });
     });
   });
   return result;
@@ -74,7 +77,9 @@ export function act(state, action) {
     if (ally) {
       const healed = Math.min(c.value, catalog[target.id].hp - target.hp);
       target.hp += healed;
-      s.log.push(`${u.id} usou ${c.power}: ${target.id} recuperou ${healed} HP.`);
+      const cleansed = c.effect === 'support' && target.weak;
+      if (c.effect === 'support') target.weak = false;
+      s.log.push(`${u.id} usou ${c.power}: ${target.id} recuperou ${healed} HP${cleansed ? ' · fraqueza removida' : ''}.`);
     } else {
       const base = action.kind === 'attack' ? c.attack : c.value;
       const weakness = u.weak ? 2 : 0;

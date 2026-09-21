@@ -8,7 +8,7 @@ test('cada carta possui identidade única, arte, fonte e todos os componentes ed
   assert.equal(new Set(cards.map(c => c.number)).size, cards.length);
   for (const c of cards) {
     for (const field of ['concept', 'lore', 'explanation', 'example', 'limit', 'mechanic', 'lineage']) assert.ok(c[field]?.trim().length > 0, `${c.id}: ${field}`);
-    assert.ok(sources[c.source]?.url.startsWith('https://'));
+    for (const source of [c.source, ...(c.additionalSources || [])]) assert.ok(sources[source]?.url.startsWith('https://'));
     assert.ok(c.related.every(id => cards.some(other => other.id === id)));
     assert.ok(c.quiz.answer >= 0 && c.quiz.answer < c.quiz.options.length);
     assert.equal(c.quiz.options.length, new Set(c.quiz.options).size);
@@ -27,12 +27,15 @@ test('filtros combinam busca, tipo e grimório e suportam resultados vazios', ()
   assert.equal(selectCards({ type: 'Maldição' }).length, 2);
 });
 
-test('raças separam Matemática de Engenharia de IA e Todos reúne as áreas', () => {
+test('raças separam suas áreas sem duplicar cartas e Todos reúne o catálogo', () => {
   assert.deepEqual(selectCards({ race: 'Matemática' }).map(c => c.id), ['soma']);
+  assert.deepEqual(selectCards({ race: 'Soft-skill' }).map(c => c.id), ['humildade']);
   const engineering = selectCards({ race: 'Engenharia de IA' }).map(c => c.id);
   assert.ok(engineering.includes('hnsw') && engineering.includes('siege'));
-  assert.ok(!engineering.includes('soma'));
-  assert.equal(selectCards({ race: 'Todos' }).length, engineering.length + 1);
+  assert.ok(!engineering.includes('soma') && !engineering.includes('humildade'));
+  const byRace = [...new Set(cards.map(c => c.race))].flatMap(race => selectCards({ race }).map(c => c.id));
+  assert.equal(new Set(byRace).size, cards.length);
+  assert.deepEqual(byRace.sort(), selectCards({ race: 'Todos' }).map(c => c.id).sort());
   assert.equal(selectCards({ race: 'Desconhecida' }).length, 0);
 });
 
@@ -44,6 +47,15 @@ test('Soma combina raça, tema, busca, tipo e favoritos sem escapar dos filtros'
   assert.deepEqual(selectCards({ ...selection, saved: ['keyword'] }), []);
   assert.deepEqual(selectCards({ query: 'CAIXA DE FERRAMENTAS' }).map(c => c.id), ['soma']);
   assert.deepEqual(sanitizeSaved(['soma', 'soma', 'hnsw']), ['soma', 'hnsw']);
+});
+test('Humildade combina Soft-skill, tema, busca, tipo e favoritos sem escapar dos filtros', () => {
+  const selection = { query: 'HUMILDADE jornada compartilhada', race: 'Soft-skill', type: 'Invocação', savedOnly: true, saved: ['humildade', 'soma', 'hnsw'] };
+  assert.deepEqual(selectCards(selection).map(c => c.id), ['humildade']);
+  assert.deepEqual(selectCards({ ...selection, race: 'Matemática' }), []);
+  assert.deepEqual(selectCards({ ...selection, type: 'Artefato' }), []);
+  assert.deepEqual(selectCards({ ...selection, saved: ['hnsw'] }), []);
+  assert.deepEqual(selectCards({ query: 'NILO companheiro' }).map(c => c.id), ['humildade']);
+  assert.deepEqual(sanitizeSaved(['humildade', 'soma', 'humildade']), ['humildade', 'soma']);
 });
 test('ordena sem modificar o catálogo e mantém desempate estável', () => {
   assert.equal(selectCards({ sort: 'cost' })[0].id, 'keyword');

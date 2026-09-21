@@ -1,6 +1,12 @@
 # Arcana — Crônicas do Conhecimento
 
-**PRD v0.5 · 20 de setembro de 2026 · Status: coleção + arena jogável**
+**PRD v0.6 · 20 de setembro de 2026 · Status: coleção + arena jogável**
+
+## Adição v0.6 — Soft-skill e Jornada Compartilhada
+
+Terceira raça/área de conhecimento: Soft-skill. Nilo, o Companheiro Leal (012), é um hobbit que representa humildade, escuta, inteligência emocional, parceria e valor para o cliente e a empresa. A inspiração de companheirismo de Sam foi adaptada em personagem próprio, registrada no repertório como FANT-002. O texto diferencia superar disputas políticas internas de ignorar segurança e responsabilidade.
+
+A coleção tem doze cartas em três áreas. HP 20, ataque 2 e Ombro a ombro por 2 mana: restaura até 4 HP e remove fraqueza de outro aliado vivo; pode apoiar aliado com HP completo se estiver fraco. Não altera veneno nem marca. Atributos iniciais, sem simulações de equilíbrio. Conteúdo apoiado nos princípios do Manifesto Ágil e no trabalho de Salovey e Mayer sobre inteligência emocional.
 
 ## Adição v0.5 — Matemática e Caixa de Ferramentas
 
@@ -18,7 +24,7 @@ Carta 009: Cartógrafa dos Mil Caminhos. Nona carta da coleção, com sétima il
 
 ## Entrega v0.2 — Arena dos Saberes
 
-Além da coleção, o produto oferece duelos de três cartas contra três, contra o computador ou entre duas pessoas no mesmo aparelho. Todas as onze cartas possuem HP, ataque básico, função e um poder exclusivo. Todos os tipos se manifestam como combatentes neste modo; raridade e favoritos não concedem vantagens.
+Além da coleção, o produto oferece duelos de três cartas contra três, contra o computador ou entre duas pessoas no mesmo aparelho. Todas as doze cartas possuem HP, ataque básico, função e um poder exclusivo. Todos os tipos se manifestam como combatentes neste modo; raridade e favoritos não concedem vantagens.
 
 Cada equipe escolhe três cartas diferentes e recebe três pontos de mana por rodada. Os jogadores alternam uma ação por vez: ataque básico gratuito, defesa gratuita com três pontos de escudo, ou poder com custo de um ou dois pontos de mana. Cada carta viva age uma vez na rodada. Ao usar um poder, ele fica indisponível na rodada seguinte. A iniciativa inicial é sorteada e alterna nas rodadas seguintes.
 

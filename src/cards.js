@@ -1,6 +1,8 @@
 import { combatCards } from './combat-cards.js';
 
 export const sources = {
+  humility: { title: 'Manifesto Ágil — Princípios: valor para o cliente e colaboração', url: 'https://agilemanifesto.org/iso/ptbr/principles.html' },
+  emotional: { title: 'Salovey e Mayer — Emotional Intelligence (1990)', url: 'https://scholars.unh.edu/psych_facpub/450/' },
   soma: { title: 'OpenStax — Prealgebra 2e: Add Whole Numbers', url: 'https://openstax.org/books/prealgebra-2e/pages/1-2-add-whole-numbers' },
   siege: { title: 'OWASP — LLM01:2025 Prompt Injection', url: 'https://genai.owasp.org/llmrisk/llm01-prompt-injection/' },
   hnsw: { title: 'Malkov e Yashunin — Hierarchical Navigable Small World graphs (2016; revisão 2018)', url: 'https://arxiv.org/abs/1603.09320' },
@@ -133,6 +135,17 @@ export const cards = [
     limit: 'Esta primeira carta trabalha com números naturais e grupos sem itens repetidos. Ao juntar grupos que se sobrepõem, cuidado para não contar o mesmo item duas vezes. Somar não significa sempre aumentar: somar zero mantém o valor; números negativos serão outra etapa. O limite de HP na arena é uma regra do jogo, não da adição.',
     related: [], source: 'soma',
     quiz: { question: 'Sua caixa tem 4 peças. Você acrescenta outras 3. Quantas peças há agora?', options: ['1 peça', '7 peças', '12 peças'], answer: 1, feedback: '4 + 3 = 7. As parcelas são 4 e 3, e a soma é 7. A ferramenta reúne as duas quantidades em um total.' },
+  },
+  {
+    id: 'humildade', number: 12, name: 'Nilo, o Companheiro Leal', concept: 'Humildade', subtitle: 'Inteligência emocional, parceria e valor para o cliente em TI', type: 'Invocação', rarity: 'Rara', art: 'humildade', color: 'green', race: 'Soft-skill', theme: 'Jornada Compartilhada', lineage: 'Hobbits · Jornada Compartilhada',
+    ability: 'Ombro a ombro', summary: 'Escute, compartilhe o mérito e ajude a equipe a entregar o que importa ao cliente.',
+    flavor: '“Não preciso ser o herói da história. Precisamos chegar juntos.”',
+    lore: 'Nilo é um hobbit de passos pequenos e compromisso firme. Quando uma ponte cede, ele escuta os viajantes antes de discutir quem desenhou o caminho. Reconhece o que não sabe, pede ajuda e divide as ferramentas. Não disputa a liderança nem toma para si o mérito dos companheiros. Sua maior conquista é ver a aldeia receber o que precisava, com todos capazes de continuar a jornada.',
+    explanation: 'Humildade em TI aparece ao reconhecer limites, aceitar feedback e dividir o mérito. Inteligência emocional ajuda a perceber as próprias reações, ouvir o outro e escolher uma resposta construtiva sob pressão. Em parceria, a equipe troca disputas de ego e política interna por um objetivo comum: entregar valor ao cliente e à empresa.',
+    example: 'Uma entrega falhou. Em vez de procurar culpados, você escuta o cliente, reconhece sua parte e chama colegas de desenvolvimento, operações e negócio. Juntos, combinam uma correção verificável, comunicam riscos e conferem se o problema do cliente foi resolvido. O mérito é compartilhado.',
+    limit: 'Humildade não exige se diminuir, aceitar desrespeito ou concordar com tudo. Priorizar o cliente não autoriza ignorar segurança, ética ou obrigações. Divergir com respeito e sinalizar riscos também protege a entrega. O apoio da carta é uma metáfora: inteligência emocional não remove dificuldades automaticamente.',
+    related: [], source: 'humility', additionalSources: ['emotional'],
+    quiz: { question: 'Uma discussão técnica virou disputa de ego. Qual atitude representa Nilo?', options: ['Impor a própria solução para encerrar a discussão', 'Aceitar qualquer pedido sem discutir riscos', 'Ouvir, reconhecer limites e combinar uma solução verificável para o cliente'], answer: 2, feedback: 'Humildade permite aprender e compartilhar decisões. Escutar, discutir riscos e verificar o resultado ajuda a construir parceria sem abandonar a responsabilidade.' },
   },
 ].map(card => ({ ...card, combat: combatCards[card.id], cost: combatCards[card.id].cost,
   mechanic: `${combatCards[card.id].power}: ${combatCards[card.id].text} Custo: ${combatCards[card.id].cost} de mana. Recarga: 1 rodada completa.` }));

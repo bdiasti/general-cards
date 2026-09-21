@@ -67,6 +67,62 @@ test('cura exige alvo ferido vivo e nunca ultrapassa o HP máximo', () => {
   s.teams[0][1].hp = 0;
   assert.throws(() => act(s, { actor: 0, kind: 'power', target: 1 }));
 });
+test('Ombro a ombro exige outro aliado vivo ferido ou com fraqueza', () => {
+  const s = createBattle([['humildade', 'soma', 'hnsw'], teams[1]]);
+  const targets = state => legalActions(state).filter(a => a.actor === 0 && a.kind === 'power').map(a => a.target);
+  assert.deepEqual(targets(s), []);
+  s.teams[0][0].hp -= 5; s.teams[0][0].weak = true;
+  assert.deepEqual(targets(s), []); // O poder não pode ser usado no próprio parceiro.
+  s.teams[0][1].hp -= 3;
+  s.teams[0][2].weak = true;
+  assert.deepEqual(targets(s), [1, 2]); // HP cheio é válido quando há fraqueza a remover.
+  const cleansed = act(s, { actor: 0, kind: 'power', target: 2 });
+  assert.equal(cleansed.teams[0][2].hp, combatCards.hnsw.hp);
+  assert.equal(cleansed.teams[0][2].weak, false);
+  assert.match(cleansed.log.at(-1), /recuperou 0 HP · fraqueza removida/);
+  s.teams[0][2].hp = 0;
+  assert.deepEqual(targets(s), [1]);
+  for (const target of [0, 2]) assert.throws(() => act(s, { actor: 0, kind: 'power', target }));
+  s.mana[0] = 1;
+  assert.deepEqual(targets(s), []);
+  s.mana[0] = RULES.mana; s.teams[0][0].cooldown = 1;
+  assert.deepEqual(targets(s), []);
+});
+test('Ombro a ombro cura até 4 HP, remove só a fraqueza do alvo e consome mana e ação', () => {
+  const s = createBattle([['humildade', 'soma', 'hnsw'], teams[1]]);
+  s.teams[0][0].weak = true;
+  Object.assign(s.teams[0][1], { hp: combatCards.soma.hp - 2, weak: true, poison: 2, marked: true, shield: 3 });
+  const next = act(s, { actor: 0, kind: 'power', target: 1 });
+  assert.equal(next.teams[0][1].hp, combatCards.soma.hp);
+  assert.equal(next.teams[0][1].weak, false);
+  assert.equal(next.teams[0][1].poison, 2); assert.equal(next.teams[0][1].marked, true); assert.equal(next.teams[0][1].shield, 3);
+  assert.equal(next.teams[0][0].weak, true); // A fraqueza do ator aguarda sua própria ação ofensiva.
+  assert.equal(next.teams[0][0].used, true); assert.equal(next.teams[0][0].cooldown, RULES.cooldown);
+  assert.equal(next.mana[0], 1); assert.equal(next.active, 1);
+  assert.equal(s.teams[0][1].hp, combatCards.soma.hp - 2); assert.equal(s.teams[0][1].weak, true);
+  s.teams[0][1].hp = 3;
+  const wounded = act(s, { actor: 0, kind: 'power', target: 1 });
+  assert.equal(wounded.teams[0][1].hp, 7);
+});
+test('replay preserva Ombro a ombro em equipe de Soft-skill, Matemática e Engenharia de IA', () => {
+  const lineup = [['humildade', 'soma', 'hnsw'], ['contamination', 'poison', 'agent']];
+  const actions = [
+    { actor: 0, kind: 'power', target: 1 }, // Reflexo incerto fere Soma e aplica fraqueza.
+    { actor: 0, kind: 'power', target: 1 }, // O parceiro cura Soma e remove a fraqueza.
+    { actor: 1, kind: 'attack', target: 2 },
+    { actor: 1, kind: 'power', target: 2 }, // A ferramenta restaura HNSW.
+    { actor: 2, kind: 'guard', target: 2 },
+    { actor: 2, kind: 'attack', target: 0 },
+  ];
+  let s = createBattle(lineup, 1);
+  for (const action of actions) s = act(s, action);
+  assert.equal(s.round, 2);
+  assert.equal(s.teams[0][1].hp, combatCards.soma.hp);
+  assert.equal(s.teams[0][1].weak, false);
+  assert.equal(s.teams[0][2].hp, combatCards.hnsw.hp);
+  assert.ok(s.log.some(line => line.includes('Ombro a ombro') && line.includes('fraqueza removida')));
+  assert.deepEqual(restoreMatch({ version: RULES.version, mode: 'local', teams: lineup, first: 1, actions }).state, s);
+});
 test('rodada renova mana, alterna iniciativa, expira efeitos e bloqueia poder na próxima rodada', () => {
   let s = createBattle(teams);
   s.teams[0][0].hp -= 3;
